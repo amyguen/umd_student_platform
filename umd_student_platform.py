@@ -6,8 +6,28 @@
 """
 
 class Student:
-    """ An instance of a UMD Information Science student
+    """ An instance of a UMD Information Science student.
 
     Attributes:
         ??
     """
+    def __intit__(self, ):
+        """ 
+        Args:
+        Returns:
+
+        """
+    
+    def benchmark_2():
+        """ 
+        Args:
+
+        Returns:
+        """
+    
+    def advising_contacts():
+        """
+        Args:
+        Returns:
+
+        """
