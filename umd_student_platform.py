@@ -43,17 +43,17 @@ class Student:
         a list of courses in the specified information science specialization 
       """
       
-      def core_courses(taken):
-        """Determines a list of core INST courses that the student must still
-        take
+    def core_courses(taken):
+      """Determines a list of core INST courses that the student must still
+      take
         
-        Args:
-          taken (list): list of strings of INST classes that the student has 
-          already received credit for
+      Args:
+        taken (list): list of strings of INST classes that the student has 
+        already received credit for
         
-        Returns:
-          a list of core INST core courses
-        """
+      Returns:
+        a list of core INST courses
+      """
       
       if __name__ = "__main__":
         
