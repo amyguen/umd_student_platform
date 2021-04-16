@@ -31,8 +31,34 @@ class Student:
         Returns:
 
         """
-
-
+    
+    def specializations(specialization):
+      """Finds all the classes in the specified specialization parameter
+      
+      Args:
+        specialization (string): a string of the specialization (cybersecurity,
+        data science, healthcare, digital curation)
+        
+      Returns:
+        a list of courses in the specified information science specialization 
+      """
+      
+      def core_courses(taken):
+        """Determines a list of core INST courses that the student must still
+        take
+        
+        Args:
+          taken (list): list of strings of INST classes that the student has 
+          already received credit for
+        
+        Returns:
+          a list of core INST core courses
+        """
+      
+      if __name__ = "__main__":
+        
+      
+        
 
 
 class Benchmark_1:
