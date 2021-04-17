@@ -32,7 +32,29 @@ class Student:
 
         """
 
+def data_retrieval(url_input):
+  """
+  This function will use imported modules to web scrape the UMD's
+  School of Information's website so that we can retrieve data on request.
 
+  Args: (string)url: the address to the site where we will derive information
+  from
+
+  Returns: the part of the website that is searched for 
+
+  """
+def career_opportunities(career_preferences):
+  """
+  This function returns the opportunities available based on a particular
+  career input by the user. This function might scrape a website that 
+  provides specific jobs available. 
+
+  Args: career_preferences(string): the input put in by the user. We will 
+  probably provide options for the career preferences that can be chosen.
+
+  Returns: opportunities(string): jobs available based on the input.
+
+  """
 
 
 class Benchmark_1:
