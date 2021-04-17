@@ -27,7 +27,7 @@ class Student:
         """
     
 
-    def benchmark_2(student_id, student_name, completed):
+    def benchmark_II(student_id, student_name, completed):
         """ Returns to the student a list of Benchmark II courses in the 
             Information Science department, returns to the student prerequisites 
             for any inputted Benchmark II class, returns Benchmark II classes 
