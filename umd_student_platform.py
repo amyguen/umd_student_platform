@@ -3,6 +3,24 @@
     their schedules, find contact information for advisors, and view potential
     career options.
 """
+def greet(student_id, student_name):
+    welcome = input('Welcome to I-School help! What can we assist you with?')
+    if welcome == 'Benchmark Classes':
+
+    elif welcome == 'Core Courses':
+        
+    elif welcome == 'Specializations':
+        
+    elif welcome == 'Advising Contacts':
+        
+    elif welcome == 'Career Advise':
+        
+    elif welcome == 'Credit Counter':
+
+    else:
+        wrong_input = input("I'm sorry, we don't know how to help you with that. Please choose another option.")
+
+
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -25,7 +43,25 @@ class Student:
             creates global variables, specifically student_id, student_name, and
                 grad_year
         """
-    
+        self.student_name = student_name
+        self.student_id = student_id
+        self.grad_year = grad_year
+
+
+    def benchmark_I(student_id, student_name, completed):
+        """Determines whether a student has met their Benchmark 1 requirement
+        Args: 
+            student_id (int): the unique identifying number of the student
+            student_name (str): the name of the student
+            completed (list of str): a list of courses the student has already
+                received credit for
+            
+    """
+        class_list = ['in here we will put the benchmark I classes']
+        print('These are the Benchmark I classes for the I-School:')
+        print(class_list)
+        classes_taken = input('Which of these have you taken?')
+
 
     def benchmark_II(student_id, student_name, completed):
         """ Returns to the student a list of Benchmark II courses in the 
@@ -115,40 +151,38 @@ class Student:
       Returns:
         a list of core INST courses
       """
-      
-    if __name__ = "__main__":
-        
-      
-        
-
-
-class Benchmark_1:
-  """Determines whether a student has met their Benchmark 1 requirement
-  Attributes: 
-    course (str): course id 
-    grade (float): grade student receives 
-  """
-  def __init__(self, course, grade):
-    """Assigning attributes to objects 
-    Args: 
-       course (str): course id 
-       grade (float): grade student receives 
-    """
-    self.course = course
-    self.grade = grade 
     
-  def pass_fail(course, grade):
-    """This function will determine whether the student has Pass/Failed the class 
-    and adds the course to their audit/profile
-    
-    Args: 
-    See __init__ method
-    Returns: passed courses 
+    def benchmark_I(student_id, student_name, completed):
+        """Determines whether a student has met their Benchmark 1 requirement
+        Args: 
+            student_id (int): the unique identifying number of the student
+            student_name (str): the name of the student
+            completed (list of str): a list of courses the student has already
+                received credit for
+            
     """
- def credit_counter(course):
-  """Counts credits student has passed and how many more they need
-  
-  Args: 
-    course (str): course id 
+      
+        
+    
+    def pass_fail(course, grade):
+        """This function will determine whether the student has Pass/Failed the class 
+        and adds the course to their audit/profile
+        
+        Args:
+            course (str) : the course the student inputs
+            grade (str) : the grade received in the course
+        Returns: 
+            passed courses 
+    """
+    def credit_counter(course):
+        """Counts credits student has passed and how many more they need
+        
+        Args: 
+            course (str): course id 
+    
     Returns: number of outstanding credits 
   """
+def main():
+    
+
+ if __name__ = "__main__":
