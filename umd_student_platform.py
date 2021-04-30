@@ -137,21 +137,6 @@ class Student:
         Returns: the part of the website that is searched for 
         """
     
-    def career_opportunities(career_preferences):
-      """
-        This function returns the opportunities available based on a particular
-        career input by the user. This function might scrape a website that 
-        provides specific jobs available. 
-
-        Args: 
-            career_preferences(string): the input put in by the user. We will 
-                probably provide options for the career preferences that can be chosen.
-        
-        Returns: 
-            opportunities(string): jobs available based on the input.
-
-      """
-    
     def specializations(specialization):
       """Finds all the classes in the specified specialization parameter
       
