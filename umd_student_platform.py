@@ -185,14 +185,6 @@ class Student:
         Returns: 
             passed courses 
       """
-    def credit_counter(course):
-      """Counts credits student has passed and how many more they need
-        
-      Args: 
-        course (str): course id 
-    
-      Returns: number of outstanding credits 
-      """
   
 def main():
       
