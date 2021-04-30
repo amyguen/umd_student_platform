@@ -3,24 +3,6 @@
     their schedules, find contact information for advisors, and view potential
     career options.
 """
-def greet(student_id, student_name):
-    welcome = input('Welcome to I-School help! What can we assist you with?')
-    if welcome == 'Benchmark Classes':
-
-    elif welcome == 'Core Courses':
-        
-    elif welcome == 'Specializations':
-        
-    elif welcome == 'Advising Contacts':
-        
-    elif welcome == 'Career Advise':
-        
-    elif welcome == 'Credit Counter':
-
-    else:
-        wrong_input = input("I'm sorry, we don't know how to help you with that. Please choose another option.")
-
-
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -47,44 +29,85 @@ class Student:
         self.student_id = student_id
         self.grad_year = grad_year
 
+    def greet(student_id, student_name):
+      """
+      This function takes a student's name and and student's identification number to create a customized greeting based on the inputs of the student trying to use our program.
 
-    def benchmark_I(student_id, student_name, completed):
-        """Determines whether a student has met their Benchmark 1 requirement
-        Args: 
-            student_id (int): the unique identifying number of the student
-            student_name (str): the name of the student
-            completed (list of str): a list of courses the student has already
-                received credit for
-            
-    """
-        class_list = ['in here we will put the benchmark I classes']
-        print('These are the Benchmark I classes for the I-School:')
-        print(class_list)
-        classes_taken = input('Which of these have you taken?')
+      Args:
+        student_id (string): student's identification number
+        student_name(string): students's full name 
 
+      Returns: 
+        welcome (string):This function returns our welcome statements with the student's name and identification number in the greeting. 
 
-    def benchmark_II(student_id, student_name, completed):
-        """ Returns to the student a list of Benchmark II courses in the 
-            Information Science department, returns to the student prerequisites 
-            for any inputted Benchmark II class, returns Benchmark II classes 
-            the student has yet to fulfill.
+      """
+   
+      welcome = input('Welcome, ' + student_name +' (UID:) '+ student_id + ',to I-School help! What can we assist you with?' +
+                    'Please choose from the following list of options:\n' +
+                    'Benchmark I\nBenchmark II\nCore Courses\nSpecializations\n'+
+                    'Advising Contacts\nCareer Advice\nCredit Counter\n')
+      return welcome
+   
+    def get_classes():
+      """
+      This function uses a loop to allow students to enter the classes that 
+      they have taken that are part of the Information Science major, stores 
+      them in a list, and then returns the list with the classes in it. 
 
-        Args:
-            student_id (int): the unique identifying number of the student
-            student_name (str): the name of the student
-            completed (list of str): a list of courses the student has already
-                received credit for
+      Args:
+        This function has no set arguments. 
 
-        Returns:
-            list: a list of Benchmark II classes within the Information Science
-                department
-            list: a list of prerequisites for an inputted Benchmark II class
-            list: a list of Benchmark II classes the student has yet to fulfill
+      Returns: 
+        student_classes(list): the inputted classes that the student has 
+        taken in the Information Science major. 
+
+      """
+      count = 0
+      student_classes = []
         
-        Raises:
-            ValueError: student did not input a valid Benchmark II class
-        """
-    
+      while count == 0:
+        classes = input('Please enter your INST classes one at a time.' +
+                        'Enter stop when you have entered all your' + 
+                        'classes.\n')
+        if classes != "stop":
+          student_classes.append(classes)
+        else:
+          count += 1
+                
+      return student_classes
+
+    def benchmark_I():
+      
+      
+      requirements = input('Have you taken MATH115 or higher and psych100? ')
+      if requirements == 'no':
+          incomplete = 'You have not completed the benchmark I courses.'
+          return incomplete
+      elif requirements == 'yes':
+          completed = 'You have completed the benchmark I courses.'
+          return completed
+      else:
+          response = 'Please try again and enter either yes or no.'
+          return response
+      
+    def benchmark_II():
+      
+      requirements = input('Have you taken STAT100, INST126, and INST201? ')
+      if requirements == 'no':
+          incomplete = 'You have not completed the benchmark II courses.'
+          return incomplete
+      elif requirements == 'yes':
+          completed = 'You have completed the benchmark II courses.'
+          return completed
+      else:
+          response = 'Please try again and enter either yes or no.'
+          return response
+          
+    def credit_counter(classes_taken):
+      credits = len(classes_taken) * 3
+      return credits
+      
+  
 
     def advising_contacts(student_id, student_name, specialization):
         """ Returns to the student a list of advisors and their contact 
@@ -115,7 +138,7 @@ class Student:
         """
     
     def career_opportunities(career_preferences):
-        """
+      """
         This function returns the opportunities available based on a particular
         career input by the user. This function might scrape a website that 
         provides specific jobs available. 
@@ -127,7 +150,7 @@ class Student:
         Returns: 
             opportunities(string): jobs available based on the input.
 
-  """
+      """
     
     def specializations(specialization):
       """Finds all the classes in the specified specialization parameter
@@ -151,21 +174,9 @@ class Student:
       Returns:
         a list of core INST courses
       """
-    
-    def benchmark_I(student_id, student_name, completed):
-        """Determines whether a student has met their Benchmark 1 requirement
-        Args: 
-            student_id (int): the unique identifying number of the student
-            student_name (str): the name of the student
-            completed (list of str): a list of courses the student has already
-                received credit for
-            
-    """
-      
         
-    
     def pass_fail(course, grade):
-        """This function will determine whether the student has Pass/Failed the class 
+      """This function will determine whether the student has Pass/Failed the class 
         and adds the course to their audit/profile
         
         Args:
@@ -173,16 +184,44 @@ class Student:
             grade (str) : the grade received in the course
         Returns: 
             passed courses 
-    """
+      """
     def credit_counter(course):
-        """Counts credits student has passed and how many more they need
+      """Counts credits student has passed and how many more they need
         
-        Args: 
-            course (str): course id 
+      Args: 
+        course (str): course id 
     
-    Returns: number of outstanding credits 
-  """
+      Returns: number of outstanding credits 
+      """
+  
 def main():
-    
+      
+      student_name = input("Please enter your full name: ")
+      student_id = input("Please enter your student ID number: ")
+      
+      option = greet(student_id, student_name)
+      
+      if option == "Benchmark I":
+          print(benchmark_I())
+          
+      elif option == 'Benchmark II':
+          print(benchmark_II())
+      
+      elif option == "Core Courses":
+          get_classes()
+          print("C")
+          
+      elif option == "Specializations":
+          get_classes()
+          print("S")
+          
+      elif option == "Advising Contacts":
+          print("A")
+          
+      elif option == "Credit Counter":
+          print('You have completed '+ str(credit_counter(get_classes())) + ' INST credits.')
 
- if __name__ = "__main__":
+      else:
+          print("I'm sorry, we don't know how to help you with that.")
+
+if __name__ == "__main__":
