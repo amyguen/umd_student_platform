@@ -13,7 +13,7 @@ class Student:
         grad_year (int): the intended graduation year of the student
     """
     
-    def __intit__(self, student_id, student_name, grad_year):
+    def __init__(self, student_id, student_name, grad_year, classes_taken):
         """ Assigns attributes to objects, instantiates a student class
 
         Args:
@@ -28,27 +28,32 @@ class Student:
         self.student_name = student_name
         self.student_id = student_id
         self.grad_year = grad_year
+        self.classes_taken = classes_taken
 
-    def greet(student_id, student_name):
-      """
-      This function takes a student's name and and student's identification number to create a customized greeting based on the inputs of the student trying to use our program.
+    def greet(self):
+      """This function takes a student's name and and student's identification 
+      number to create a customized greeting based on the inputs of the student 
+      trying to use our program.
 
       Args:
-        student_id (string): student's identification number
-        student_name(string): students's full name 
+        self (Student) : an instance of the Student Class
 
       Returns: 
-        welcome (string):This function returns our welcome statements with the student's name and identification number in the greeting. 
+        welcome (string):This function returns our welcome statements with the 
+          student's name and identification number in the greeting. 
 
       """
    
-      welcome = input('Welcome, ' + student_name +' (UID:) '+ student_id + ',to I-School help! What can we assist you with?' +
-                    'Please choose from the following list of options:\n' +
-                    'Benchmark I\nBenchmark II\nCore Courses\nSpecializations\n'+
-                    'Advising Contacts\nCareer Advice\nCredit Counter\n')
+      welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
+                    ' to I-School help! What can we assist you with? ' +
+                    'Please choose from the following list of options: \n' +
+                    'Benchmark I Classes \nBenchmark II Classes \nCore Courses'+
+                    '\nMajor Specializations \nCredit Counter \nAdvising '+
+                    'Contacts \nUpdate Classes Taken \nChange Name, Graduation'+
+                    ' Year')
       return welcome
    
-    def get_classes():
+    def get_classes(self):
       """
       This function uses a loop to allow students to enter the classes that 
       they have taken that are part of the Information Science major, stores 
@@ -63,22 +68,18 @@ class Student:
 
       """
       count = 0
-      student_classes = []
-        
+      self.classes_taken = []
       while count == 0:
-        classes = input('Please enter your INST classes one at a time.' +
+        classes = input('Please enter your INST classes one at a time. ' +
                         'Enter stop when you have entered all your' + 
                         'classes.\n')
         if classes != "stop":
-          student_classes.append(classes)
+          self.classes_taken.append(classes)
         else:
-          count += 1
-                
-      return student_classes
+          count += 1     
+      return self.classes_taken
 
     def benchmark_I():
-      
-      
       requirements = input('Have you taken MATH115 or higher and psych100? ')
       if requirements == 'no':
           incomplete = 'You have not completed the benchmark I courses.'
@@ -91,7 +92,6 @@ class Student:
           return response
       
     def benchmark_II():
-      
       requirements = input('Have you taken STAT100, INST126, and INST201? ')
       if requirements == 'no':
           incomplete = 'You have not completed the benchmark II courses.'
@@ -170,35 +170,62 @@ class Student:
         Returns: 
             passed courses 
       """
+
+      def write_to_file(student):
+        pass
+
+def load_from_file(student_id):
+  with open('Students/'+ student_id, 'r', encoding = 'utf-8') as f:
+    for line in f:
+      attributes = line.strip().split(',')
+      student_name = attributes[0]
+      grad_year = attributes[1]
+      taken_classes = attributes[2:]
+      class_instance = Student(student_id, student_name, grad_year, taken_classes)
+      return class_instance
   
 def main():
-      
+  while True:
+    been_here = input('Hi! Have you been here before? \n')
+    if been_here.lower() == 'no':
       student_name = input("Please enter your full name: ")
       student_id = input("Please enter your student ID number: ")
+      grad_year = input('Please enter your expected graduation year:')
+      classes_taken = []
+      class_instance = Student(student_id, student_name, grad_year, classes_taken)
+      class_instance.get_classes()
+      break
+    elif been_here.lower() == 'yes':
+      student_id = input("Please enter your student ID number: ")
+      class_instance = load_from_file(student_id)
+      break
+    else:
+      print('Please enter yes or no')
+  
+  option = class_instance.greet()
+  
+  if option == "Benchmark I":
+      print(class_instance.benchmark_I())
       
-      option = greet(student_id, student_name)
+  elif option == 'Benchmark II':
+      print(class_instance.benchmark_II())
+  
+  elif option == "Core Courses":
+      class_instance.get_classes()
+      print("C")
       
-      if option == "Benchmark I":
-          print(benchmark_I())
-          
-      elif option == 'Benchmark II':
-          print(benchmark_II())
+  elif option == "Specializations":
+      class_instance.get_classes()
+      print("S")
       
-      elif option == "Core Courses":
-          get_classes()
-          print("C")
-          
-      elif option == "Specializations":
-          get_classes()
-          print("S")
-          
-      elif option == "Advising Contacts":
-          print("A")
-          
-      elif option == "Credit Counter":
-          print('You have completed '+ str(credit_counter(get_classes())) + ' INST credits.')
+  elif option == "Advising Contacts":
+      print("A")
+      
+  elif option == "Credit Counter":
+      print('You have completed '+ str(credit_counter(get_classes())) + ' INST credits.')
 
-      else:
-          print("I'm sorry, we don't know how to help you with that.")
+  else:
+      print("I'm sorry, we don't know how to help you with that.")
 
 if __name__ == "__main__":
+  main()
