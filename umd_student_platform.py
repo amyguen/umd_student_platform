@@ -50,7 +50,7 @@ class Student:
                     'Benchmark I Classes \nBenchmark II Classes \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \nAdvising '+
                     'Contacts \nUpdate Classes Taken \nChange Name, Graduation'+
-                    ' Year')
+                    ' Year\n')
       return welcome
    
 
