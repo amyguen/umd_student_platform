@@ -47,10 +47,10 @@ class Student:
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
-                    'Benchmark I Classes \nBenchmark II Classes \nCore Courses'+
+                    'Benchmark I Courses \nBenchmark II Courses \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name, Graduation'+
-                    ' Year\n')
+                    'Contacts \nUpdate Classes Taken \nChange Name or '+
+                    'Graduation Year\n')
       return welcome
    
 
@@ -66,19 +66,24 @@ class Student:
       count = 0
       self.classes_taken = []
       while count == 0:
-        classes = input('Please enter your INST classes one at a time. ' +
-                        'Enter stop when you have entered all your' + 
-                        'classes.\n')
-        if classes != "stop":
+        classes = input("Please enter all of the INST-related classes that " +
+                  "you have taken, one at a time. Enter stop when you have " +
+                  "finished. Don't forget to include I-School major " +
+                  "benchmarks, like math and psychology courses! Thank you! \n")
+        if classes.lower() != "stop":
           self.classes_taken.append(classes)
         else:
           count += 1     
       return self.classes_taken
 
 
-    def benchmark_I():
+    def benchmark_I(self, ):
       """
       """
+
+
+
+
       requirements = input('Have you taken MATH115 or higher and psych100? ')
       if requirements == 'no':
           incomplete = 'You have not completed the benchmark I courses.'
@@ -154,23 +159,16 @@ class Student:
                 recommended for the student
         """
 
-
-    def data_retrieval(url_input):
-        """ This function will use imported modules to web scrape the UMD's
-        School of Information's website so that we can retrieve data on request.
-
-        Args: 
-            url_input (str) : the address to the site where we will derive 
-                information from
-        
-        Returns: the part of the website that is searched for 
-        """
     
 
-    def write_to_file(student):
+    def write_to_file(self):
       """
       """
-      pass
+      with open('Students/'+ self.student_id, 'w+', encoding = 'utf-8') as f:
+        class_list = ','.join(self.classes_taken)
+        new_file = self.student_name + ',' + self.grad_year + ',' + class_list
+        f.write(new_file)
+
 
 
 def load_from_file(student_id):
@@ -190,17 +188,20 @@ def main():
   """
   """
   while True:
-    been_here = input('Hi! Have you been here before? \n')
+    been_here = input('Hi! Welcome to the UMD I-School Student Platform!\n' +
+                    'Have you been here before? \n')
     if been_here.lower() == 'no':
       student_name = input("Please enter your full name: ")
-      student_id = input("Please enter your student ID number: ")
-      grad_year = input('Please enter your expected graduation year:')
+      student_id = input("Please enter your 9 digit student ID number: ")
+      grad_year = input('Please enter your expected graduation year: ')
       classes_taken = []
       class_instance = Student(student_id, student_name, grad_year, classes_taken)
       class_instance.get_classes()
+      class_instance.write_to_file() 
       break
+
     elif been_here.lower() == 'yes':
-      student_id = input("Please enter your student ID number: ")
+      student_id = input("Please enter your 9 digit student ID number:  ")
       class_instance = load_from_file(student_id)
       break
     else:
@@ -220,7 +221,8 @@ def main():
   elif option == "Advising Contacts":
       print("A") 
   elif option == "Credit Counter":
-      print('You have completed '+ str(credit_counter(get_classes())) + ' INST credits.')
+      print('You have completed '+ str(credit_counter(get_classes())) + 
+            ' INST credits.')
   else:
       print("I'm sorry, we don't know how to help you with that.")
 
