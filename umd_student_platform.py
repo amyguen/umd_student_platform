@@ -67,8 +67,9 @@ class Student:
       self.classes_taken = []
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
-                  "you have taken, one at a time. Enter stop when you have " +
-                  "finished. Don't forget to include I-School major " +
+                  "you have taken, one at a time, in the following format:" +
+                  "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
+                  " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
         if classes.lower() != "stop":
           self.classes_taken.append(classes)
@@ -78,61 +79,76 @@ class Student:
 
 
     def benchmark_I(self, ):
+      """ 
       """
-      """
+      math_flag = True
+      psych_flag = True
 
+      if 'MATH 115' not in self.classes_taken:
+        math_flag = False
+      elif 'PSYC 100' not in self.classes_taken:
+        psych_flag = False
 
-
-
-      requirements = input('Have you taken MATH115 or higher and psych100? ')
-      if requirements == 'no':
-          incomplete = 'You have not completed the benchmark I courses.'
-          return incomplete
-      elif requirements == 'yes':
-          completed = 'You have completed the benchmark I courses.'
-          return completed
+      if math_flag and psych_flag:
+        print(f'You have completed all of your Benchmark I courses! ' +
+              f'Congratulations, {self.student_name}!')
       else:
-          response = 'Please try again and enter either yes or no.'
-          return response
-      
+        print('You have not completed the Benchmark I requirements.')
+        if math_flag == False:
+          print('You have not taken MATH 115 or higher.')
+        if psych_flag == False:
+          print('You have not taken PSYC 100.')
+  
 
     def benchmark_II():
       """
       """
-      requirements = input('Have you taken STAT100, INST126, and INST201? ')
-      if requirements == 'no':
-          incomplete = 'You have not completed the benchmark II courses.'
-          return incomplete
-      elif requirements == 'yes':
-          completed = 'You have completed the benchmark II courses.'
-          return completed
-      else:
-          response = 'Please try again and enter either yes or no.'
-          return response
+      stat_flag = True
+      inst126_flag = True
+      inst201_flag = True
+
+      if 'STAT 100' not in self.classes_taken:
+        stat_flag = False
+      elif 'INST 126' not in self.classes_taken:
+        inst126_flag = False
+      elif 'INST 201' not in self.classes_taken:
+        inst201_flag = False
     
     
     def core_courses(taken):
-      """Determines a list of core INST courses that the student must still
-      take
-        
-      Args:
-        taken (list): list of strings of INST classes that the student has 
-            already received credit for
-        
-      Returns:
-        a list of core INST courses
       """
+      """
+      inst311_flag = True
+      inst314_flag = True
+      inst326_flag = True
+      inst327_flag = True
+      inst335_flag = True
+      inst346_flag = True
+      inst352_flag = True
+      inst362_flag = True
+
+      if 'INST 311' not in self.classes_taken:
+        inst311_flag = False
+      if 'INST 314' not in self.classes_taken:
+        inst314_flag = False
+      if 'INST 326' not in self.classes_taken:
+        inst326_flag = False
+      if 'INST 327' not in self.classes_taken:
+        inst327_flag = False
+      if 'INST 335' not in self.classes_taken:
+        inst335_flag = False
+      if 'INST 346' not in self.classes_taken:
+        inst346_flag = False
+      if 'INST 352' not in self.classes_taken:
+        inst352_flag = False
+      if 'INST 362' not in self.classes_taken:
+        inst362_flag = False
+      
+
 
 
     def specializations(specialization):
-      """Finds all the classes in the specified specialization parameter
-      
-      Args:
-        specialization (string): a string of the specialization (cybersecurity,
-            data science, healthcare, digital curation)
-        
-      Returns:
-        a list of courses in the specified information science specialization 
+      """
       """
 
 
@@ -159,7 +175,20 @@ class Student:
                 recommended for the student
         """
 
-    
+
+
+    def update_classes():
+      
+      self.write_to_file()
+
+
+
+
+
+    def change_name_gradyear():
+
+
+
 
     def write_to_file(self):
       """
