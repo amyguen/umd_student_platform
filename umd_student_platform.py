@@ -78,7 +78,7 @@ class Student:
       return self.classes_taken
 
 
-    def benchmark_I(self, ):
+    def benchmark_I(self):
       """ 
       """
       math_flag = True
@@ -143,8 +143,6 @@ class Student:
         inst352_flag = False
       if 'INST 362' not in self.classes_taken:
         inst362_flag = False
-      
-
 
 
     def specializations(specialization):
@@ -177,16 +175,16 @@ class Student:
 
 
 
+
     def update_classes():
-      
+
       self.write_to_file()
-
-
 
 
 
     def change_name_gradyear():
 
+      self.write_to_file()
 
 
 
@@ -217,6 +215,7 @@ def main():
   """
   """
   while True:
+
     been_here = input('Hi! Welcome to the UMD I-School Student Platform!\n' +
                     'Have you been here before? \n')
     if been_here.lower() == 'no':
