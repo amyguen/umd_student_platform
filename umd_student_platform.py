@@ -256,14 +256,15 @@ def main():
       print('Please enter yes or no')
   
   option = class_instance.greet()
+    
   if option == "Benchmark I":
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
   elif option == 'Change Name':
-    print(class_instance.update_classes())
+      print(class_instance.update_classes())
   elif option == 'Update Name or Grad Year':
-    print(class_instance.change_name_gradyear())
+      print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
       print(class_instance.core_courses())
   elif option == "Specializations":
@@ -273,9 +274,35 @@ def main():
       print("A") 
   elif option == "Credit Counter":
       print('You have completed '+ str(credit_counter(get_classes())) + 
-            ' INST credits.')
+              ' INST credits.')
   else:
       print("I'm sorry, we don't know how to help you with that.")
+
+  while option != 'stop':
+    
+    if option == "Benchmark I":
+        print(class_instance.benchmark_I())  
+    elif option == 'Benchmark II':
+        print(class_instance.benchmark_II())
+    elif option == 'Change Name':
+        print(class_instance.update_classes())
+    elif option == 'Update Name or Grad Year':
+        print(class_instance.change_name_gradyear())
+    elif option == "Core Courses":
+        print(class_instance.core_courses())
+    elif option == "Specializations":
+        class_instance.get_classes()
+        print("S") 
+    elif option == "Advising Contacts":
+        print("A") 
+    elif option == "Credit Counter":
+        print('You have completed '+ str(credit_counter(get_classes())) + 
+                ' INST credits.')
+    else:
+        print("I'm sorry, we don't know how to help you with that.")
+        
+  else:
+    print("stop")
 
 
 if __name__ == "__main__":
