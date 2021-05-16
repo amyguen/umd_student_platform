@@ -115,36 +115,50 @@ class Student:
         inst201_flag = False
     
     
-    def core_courses(taken):
+    def core_courses(self):
       """
       """
-      inst311_flag = True
-      inst314_flag = True
-      inst326_flag = True
-      inst327_flag = True
-      inst335_flag = True
-      inst346_flag = True
-      inst352_flag = True
-      inst362_flag = True
+      #inst311_flag = True
+      #inst314_flag = True
+      #inst326_flag = True
+      #inst327_flag = True
+      #inst335_flag = True
+      #inst346_flag = True
+      #inst352_flag = True
+      #inst362_flag = True
 
+      core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
+                      'INST 327': True, 'INST 335': True, 'INST 346': True, 
+                      'INST 352': True, 'INST 362': True}
+      
       if 'INST 311' not in self.classes_taken:
-        inst311_flag = False
+        core_courses['INST 311'] = False
       if 'INST 314' not in self.classes_taken:
-        inst314_flag = False
+        core_courses['INST 314'] = False
       if 'INST 326' not in self.classes_taken:
-        inst326_flag = False
+        core_courses['INST 326'] = False
       if 'INST 327' not in self.classes_taken:
-        inst327_flag = False
+        core_courses['INST 327'] = False
       if 'INST 335' not in self.classes_taken:
-        inst335_flag = False
+        core_courses['INST 335'] = False
       if 'INST 346' not in self.classes_taken:
-        inst346_flag = False
+        core_courses['INST 346'] = False
       if 'INST 352' not in self.classes_taken:
-        inst352_flag = False
+        core_courses['INST 352'] = False
       if 'INST 362' not in self.classes_taken:
-        inst362_flag = False
-
-
+        core_courses['INST 352'] = False
+        
+      not_taken = []
+      for course in core_courses:
+        if core_courses[course] == False:
+          not_taken.append(course)
+          
+      if len(not_taken) == 0:
+        print("You have completed all core courses!")
+      else:
+        print("You must still complete the following core courses: ")
+        print(*not_taken, sep = '\n')
+        
     def specializations(specialization):
       """
       """
@@ -251,8 +265,7 @@ def main():
   elif option == 'Update Name or Grad Year':
     print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
-      class_instance.get_classes()
-      print("C") 
+      print(class_instance.core_courses())
   elif option == "Specializations":
       class_instance.get_classes()
       print("S") 
