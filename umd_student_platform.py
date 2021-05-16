@@ -176,11 +176,17 @@ class Student:
 
 
 
-    def update_classes():
-
+    def update_classes(self):
+      update = input('Please enter all of the INST-related classes that ' +
+                  "you have taken, one at a time, in the following format:" +
+                  "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
+                  " have finished. Don't forget to include I-School major " +
+                  "benchmarks, like math and psychology courses! Thank you! \n")
+      if classes.lower() != "stop":
+          self.classes_taken.append(classes)
+      else:
+        count += 1
       self.write_to_file()
-
-
 
     def change_name_gradyear():
 
@@ -240,6 +246,10 @@ def main():
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
+  elif option == 'Change Name':
+    print(class_instance.update_classes())
+  elif option == 'Update Name or Grad Year':
+    print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
       class_instance.get_classes()
       print("C") 
