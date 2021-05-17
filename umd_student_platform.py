@@ -45,15 +45,9 @@ class Student:
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
-<<<<<<< HEAD
-                    'Benchmark I Courses \nBenchmark II Courses \nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter '+
-                    '\nUpdate Classes Taken \nChange Name or '+
-=======
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \nAdvising '+
                     'Contacts \nUpdate Classes Taken \nChange Name or '+
->>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
                     'Graduation Year\n')
       return welcome
    
@@ -69,6 +63,7 @@ class Student:
       """
       count = 0
       self.classes_taken = []
+      class_options = "/:?(?P<class_prefix>[MATHSPYCIN]+)/gm"
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
                   "you have taken, one at a time, in the following format:" +
@@ -78,6 +73,7 @@ class Student:
         if classes.lower() != "stop":
           self.classes_taken.append(classes)
         else:
+          if classes 
           count += 1     
       return self.classes_taken
 
@@ -168,19 +164,23 @@ class Student:
       
 
 
-    #def update_classes(self):
-     # update = input('Thank you for updating your classes taken! This will '+
-      #            ' help us help you! \n Like before, please enter all of the '+
-       #           'INST-related classes that you have taken, one at a time, ' +
-        #          'in the following format: CLAS 100 \n For example, ' +
-         #         "INST 201.\n\n Enter stop when you have finished. Don't " +
-          #        'forget to include I-School major benchmarks, like math and' +
-           #       " psychology courses! Thank you! \n")
-     # if .lower() != "stop":
-      #    self.classes_taken.append(classes)
-      #else:
-      #  count += 1
-      #self.write_to_file()
+    def update_classes(self):
+      update = input('Thank you for updating your classes taken! This will '+
+                  ' help us help you! \n Like before, please enter all of the '+
+                  'INST-related classes that you have taken, one at a time, ' +
+                  'in the following format: CLAS 100 \n For example, ' +
+                  "INST 201.\n\n Enter stop when you have finished. Don't " +
+                  'forget to include I-School major benchmarks, like math and' +
+                  " psychology courses! Thank you! \n")
+
+      append_class = {self.classes_taken.append(update) for update in update if update.lower() != 'stop'}
+
+      
+      if update.lower() != "stop":
+        self.classes_taken.append(update)
+      else:
+        count += 1
+      self.write_to_file()
 
     def change_name_gradyear():
       options = input('Here, you can change your name and your expected ' +
@@ -248,13 +248,8 @@ def main():
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
-<<<<<<< HEAD
   elif option == 'Update Classes':
     print(class_instance.update_classes())
-=======
-  elif option == 'Change Name':
-      print(class_instance.update_classes())
->>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
   elif option == 'Update Name or Grad Year':
       print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
