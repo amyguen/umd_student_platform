@@ -83,8 +83,11 @@ class Student:
 
 
     def benchmark_I(self):
-      """
+      """This function checks to see if the user has completed all
+      benchmark I courses.
        
+      Side Effects:
+        prints message onto the console
       """
       math_flag = False
       psych_flag = True
@@ -107,9 +110,8 @@ class Student:
           print('You have not taken MATH 115 or higher.')
         if psych_flag == False:
           print('You have not taken PSYC 100.')
-
+          
       return "\n"
-
 
     def benchmark_II(self):
       """
@@ -121,11 +123,9 @@ class Student:
       completed.
 
       Args: no required arguments
-      
-      Returns: does not return a specific or mutable value
 
-      Side effects: no side effect since this function does
-      not print a value. 
+      Side effects: 
+        prints message onto the console
 
       """
       stat_flag = True
@@ -152,11 +152,12 @@ class Student:
           print('You have not taken INST 201. ')
 
       return "\n"
-
-
-    
+  
     def core_courses(self):
-      """
+      """Checks to see if the student has completed all core courses.
+      
+      Side Effects:
+        prints a message onto the console 
       """
       core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
                       'INST 327': True, 'INST 335': True, 'INST 346': True, 
@@ -189,12 +190,16 @@ class Student:
       else:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
+        
       return "\n"
 
-
-
     def specializations(self):
-      """
+      """Checks based on what specialization the student wants to complete, 
+      which classes they still must complete or notifies them that they already
+      completed that specialization's classes
+      
+      Side Effects:
+        prints message onto the console
       """
       cyber_and_priv = {'INST364': True, 'INST365': True, 'INST366': True}
       choose_two = {'INST464': True, 'INST466': True, 'INST467': True}
