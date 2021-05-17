@@ -50,7 +50,7 @@ class Student:
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n\n' + 
-                    'Enter quit to exit I-School help.\n')
+                    'Enter quit to exit I-School help.\n \n\n')
       return welcome
    
 
@@ -72,6 +72,7 @@ class Student:
                   "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
                   " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
+          
         if classes.lower() != "stop":
           if not re.search(class_options, classes):
             print("Not a valid class")
@@ -83,15 +84,17 @@ class Student:
 
 
     def benchmark_I(self):
+<<<<<<< HEAD
       """This function checks to see if the user has completed all
       benchmark I courses.
        
       Side Effects:
         prints message onto the console
       """
+=======
+>>>>>>> 14a7d8677d858a955e4dd8c2f55c4284827a523f
       math_flag = False
       psych_flag = True
-
       for classes in self.classes_taken:
         split = classes.split()
         if split[0] == 'MATH':
@@ -101,9 +104,10 @@ class Student:
       if 'PSYC 100' not in self.classes_taken:
         psych_flag = False
 
+
       if math_flag and psych_flag:
-        print(f'You have completed all of your Benchmark I courses! ' +
-              f'Congratulations, {self.student_name}!')
+          print(f'You have completed all of your Benchmark I courses! ' +
+                f'Congratulations, {self.student_name}!')
       else:
         print('You have not completed the Benchmark I requirements.')
         if math_flag == False:
