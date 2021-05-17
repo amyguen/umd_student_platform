@@ -90,7 +90,7 @@ class Student:
 
       if 'MATH 115' not in self.classes_taken:
         math_flag = False
-      elif 'PSYC 100' not in self.classes_taken:
+      if 'PSYC 100' not in self.classes_taken:
         psych_flag = False
 
       if math_flag and psych_flag:
@@ -102,9 +102,11 @@ class Student:
           print('You have not taken MATH 115 or higher.')
         if psych_flag == False:
           print('You have not taken PSYC 100.')
-  
 
-    def benchmark_II():
+      return "\n"
+
+
+    def benchmark_II(self):
       """
       This function checks to see if the user has completed 
       benchmark II courses based on input. If all three 
@@ -127,9 +129,9 @@ class Student:
 
       if 'STAT 100' not in self.classes_taken:
         stat_flag = False
-      elif 'INST 126' not in self.classes_taken:
+      if 'INST 126' not in self.classes_taken:
         inst126_flag = False
-      elif 'INST 201' not in self.classes_taken:
+      if 'INST 201' not in self.classes_taken:
         inst201_flag = False
 
       if stat_flag and inst126_flag and inst201_flag:
@@ -143,6 +145,8 @@ class Student:
           print('You have not taken INST 126. ')
         if inst201_flag == False:
           print('You have not taken INST 201. ')
+
+      return "\n"
 
 
     
@@ -168,7 +172,7 @@ class Student:
       if 'INST 352' not in self.classes_taken:
         core_courses['INST 352'] = False
       if 'INST 362' not in self.classes_taken:
-        core_courses['INST 352'] = False
+        core_courses['INST 362'] = False
         
       not_taken = []
       for course in core_courses:
@@ -180,7 +184,7 @@ class Student:
       else:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
-
+      return "\n"
 
 
 
@@ -348,7 +352,7 @@ class Student:
         options = input('Here, you can change your name and your expected ' +
                   'graduation year. \nTo update your name, type name. To update' +
                   ' your graduation year, type grad year. To update both, ' +
-                  'type both. Thank you!')
+                  'type both. Thank you! \n')
         if options.lower() == 'name':
           new_name = input("Please enter your full name: ")
           self.student_name = new_name
@@ -422,17 +426,17 @@ def main():
       print(class_instance.benchmark_I()) 
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
-  elif option == 'Update Classes':
+  elif option == 'Update Classes Taken':
     print(class_instance.update_classes())
-  elif option == 'Update Name or Grad Year':
+  elif option == 'Change Name or Grad Year':
       print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
       print(class_instance.core_courses())
-  elif option == "Specializations":
+  elif option == "Major Specializations":
       print(class_instance.specializations())
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
-              ' INST credits.')
+              ' INST-related credits.')
   else:
       print("I'm sorry, we don't know how to help you with that.")
 
