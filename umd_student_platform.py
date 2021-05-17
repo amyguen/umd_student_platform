@@ -72,29 +72,42 @@ class Student:
                   "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
                   " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
+          
         if classes.lower() != "stop":
           self.classes_taken.append(classes)
         else:
-          if classes 
           count += 1     
       return self.classes_taken
 
 
     def benchmark_I(self):
       """
-       
+           for classes in self.classes_taken:
+      if "MATH 115"
+        split_class = classes.split()
+        convert_to_integer = int(split_class[1])
+        if convert_to_integer < "115":
+          math_flag = False
       """
       math_flag = True
       psych_flag = True
+      
 
-      if 'MATH 115' not in self.classes_taken:
-        math_flag = False
-      elif 'PSYC 100' not in self.classes_taken:
-        psych_flag = False
+
+
+      for classes in self.classes_taken:
+        split_classes = classes.split('')
+        split_words = split_classes.split()
+        convert_to_integer = int(split_classes[1])
+        if "MATH" in split_classes[0] and convert_to_integer < 115:
+          math_flag = False 
+
+        elif 'PSYC' not in split_classes[0] and convert_to_integer != 100: 
+          psych_flag = False
 
       if math_flag and psych_flag:
-        print(f'You have completed all of your Benchmark I courses! ' +
-              f'Congratulations, {self.student_name}!')
+          print(f'You have completed all of your Benchmark I courses! ' +
+                f'Congratulations, {self.student_name}!')
       else:
         print('You have not completed the Benchmark I requirements.')
         if math_flag == False:
