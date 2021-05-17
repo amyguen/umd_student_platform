@@ -45,9 +45,15 @@ class Student:
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
+<<<<<<< HEAD
                     'Benchmark I Courses \nBenchmark II Courses \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter '+
                     '\nUpdate Classes Taken \nChange Name or '+
+=======
+                    'Benchmark I \nBenchmark II \nCore Courses'+
+                    '\nMajor Specializations \nCredit Counter \nAdvising '+
+                    'Contacts \nUpdate Classes Taken \nChange Name or '+
+>>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
                     'Graduation Year\n')
       return welcome
    
@@ -113,45 +119,51 @@ class Student:
         inst201_flag = False
     
     
-    def core_courses(taken):
+    def core_courses(self):
       """
       """
-      inst311_flag = True
-      inst314_flag = True
-      inst326_flag = True
-      inst327_flag = True
-      inst335_flag = True
-      inst346_flag = True
-      inst352_flag = True
-      inst362_flag = True
 
+      core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
+                      'INST 327': True, 'INST 335': True, 'INST 346': True, 
+                      'INST 352': True, 'INST 362': True}
+      
       if 'INST 311' not in self.classes_taken:
-        inst311_flag = False
+        core_courses['INST 311'] = False
       if 'INST 314' not in self.classes_taken:
-        inst314_flag = False
+        core_courses['INST 314'] = False
       if 'INST 326' not in self.classes_taken:
-        inst326_flag = False
+        core_courses['INST 326'] = False
       if 'INST 327' not in self.classes_taken:
-        inst327_flag = False
+        core_courses['INST 327'] = False
       if 'INST 335' not in self.classes_taken:
-        inst335_flag = False
+        core_courses['INST 335'] = False
       if 'INST 346' not in self.classes_taken:
-        inst346_flag = False
+        core_courses['INST 346'] = False
       if 'INST 352' not in self.classes_taken:
-        inst352_flag = False
+        core_courses['INST 352'] = False
       if 'INST 362' not in self.classes_taken:
-        inst362_flag = False
-
-
+        core_courses['INST 352'] = False
+        
+      not_taken = []
+      for course in core_courses:
+        if core_courses[course] == False:
+          not_taken.append(course)
+          
+      if len(not_taken) == 0:
+        print("You have completed all core courses!")
+      else:
+        print("You must still complete the following core courses: ")
+        print(*not_taken, sep = '\n')
+        
     def specializations(specialization):
       """
       """
 
 
-    def credit_counter(classes_taken):
+    def credit_counter(self):
       """
       """
-      credits = len(classes_taken) * 3
+      credits = len(self.classes_taken) * 3
       return credits
       
 
@@ -231,25 +243,30 @@ def main():
       print('Please enter yes or no')
   
   option = class_instance.greet()
+    
   if option == "Benchmark I":
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
+<<<<<<< HEAD
   elif option == 'Update Classes':
     print(class_instance.update_classes())
+=======
+  elif option == 'Change Name':
+      print(class_instance.update_classes())
+>>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
   elif option == 'Update Name or Grad Year':
-    print(class_instance.change_name_gradyear())
+      print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
-      class_instance.get_classes()
-      print("C") 
+      print(class_instance.core_courses())
   elif option == "Specializations":
       class_instance.get_classes()
       print("S") 
   elif option == "Advising Contacts":
       print("A") 
   elif option == "Credit Counter":
-      print('You have completed '+ str(credit_counter(get_classes())) + 
-            ' INST credits.')
+      print('You have completed '+ str(class_instance.credit_counter()) + 
+              ' INST credits.')
   else:
       print("I'm sorry, we don't know how to help you with that.")
 
