@@ -46,8 +46,8 @@ class Student:
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name or '+
+                    '\nMajor Specializations \nCredit Counter \n'+
+                    'Update Classes Taken \nChange Name or '+
                     '\nSpecializations \nCredit Counter \n '+ 
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n')
@@ -390,8 +390,6 @@ def main():
       print(class_instance.core_courses())
   elif option == "Specializations":
       print(class_instance.specializations())
-  elif option == "Advising Contacts":
-      print("A") 
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
               ' INST credits.')
