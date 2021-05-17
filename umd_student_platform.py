@@ -155,14 +155,14 @@ class Student:
     def specializations(self):
       """
       """
-      cyber_and_priv = {'INST364' = True, 'INST365' = True, 'INST366' = True}
-      choose_two = {'INST464' = True, 'INST466' = True, 'INST467' = True}
+      cyber_and_priv = {'INST364': True, 'INST365': True, 'INST366': True}
+      choose_two = {'INST464': True, 'INST466': True, 'INST467': True}
       
-      data_science = {'INST354' = True, 'INST377' = True, 'INST414' = True,
-                      'INST447' = True, 'INST462' = True}
+      data_science = {'INST354': True, 'INST377': True, 'INST414': True,
+                      'INST447': True, 'INST462': True}
       
-      digital_cur = {'INST341' = True, 'INST441' = True, 'INST442' = True,
-                     'INST443' = True, 'INST448' = True}
+      digital_cur = {'INST341': True, 'INST441': True, 'INST442': True,
+                     'INST443': True, 'INST448': True}
       
       special = input("Which specialization are you interested in seeing the " 
                       + "requirements for? \nPlease choose from the " 
@@ -170,8 +170,7 @@ class Student:
                       + "Data Science\nDigital Curation")
       classes = {}
       
-      if special != 'Cybersecurity and Privacy' and special != 'Data Science'
-      and special != 'Digital Curation':
+      if special != 'Cybersecurity and Privacy' and special != 'Data Science' and special != 'Digital Curation':
         
         print("Your selection was not listed. Please try again.")
    
@@ -196,9 +195,22 @@ class Student:
           count -=1
         
         classes = cyber_and_priv
-        
-        
+        not_taken = []
+        for course in classes:
+          if classes[course] == False:
+            not_taken.append(course)
           
+        if len(not_taken) == 0:
+          if count >= 2:
+            print("You have completed all the required cybersecurity and " + 
+                  "privacy specialization courses!")
+          else:
+            print("You must complete two classes from these three options: " +
+                  "INST464, INST466, INST467")
+        else:
+          print("You must still complete the following courses: ")
+          print(*not_taken, sep = '\n')
+        
       elif special == 'Data Science':
         if 'INST 354' not in self.classes_taken:
           data_science['INST354'] = False
@@ -212,6 +224,16 @@ class Student:
           data_science['INST462'] = False
           
         classes = data_science
+        not_taken = []
+        for course in classes:
+          if classes[course] == False:
+            not_taken.append(course)
+          
+        if len(not_taken) == 0:
+          print("You have completed all the required data science courses!")
+        else:
+          print("You must still complete the following courses: ")
+          print(*not_taken, sep = '\n')
           
       elif special == 'Digital Curation':
         if 'INST 341' not in self.classes_taken:
@@ -226,8 +248,16 @@ class Student:
           digital_cur['INST448'] = False
         
         classes = digital_cur
-      
-
+        not_taken = []
+        for course in classes:
+          if classes[course] == False:
+            not_taken.append(course)
+          
+        if len(not_taken) == 0:
+          print("You have completed all the required digital curation courses!")
+        else:
+          print("You must still complete the following courses: ")
+          print(*not_taken, sep = '\n')
 
 
     def credit_counter(self):
