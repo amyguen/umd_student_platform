@@ -45,12 +45,9 @@ class Student:
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
-                    'Benchmark I\nBenchmark II\nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter '+
-                    '\nUpdate Classes Taken \nChange Name or '+
                     'Benchmark I \nBenchmark II \nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name or '+
+                    '\nSpecializations \nCredit Counter \n '+ 
+                    'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n')
       return welcome
    
@@ -167,7 +164,7 @@ class Student:
       special = input("Which specialization are you interested in seeing the " 
                       + "requirements for? \nPlease choose from the " 
                       + "following list:\nCybersecurty and Privacy\n" 
-                      + "Data Science\nDigital Curation")
+                      + "Data Science\nDigital Curation\n")
       classes = {}
       
       if special != 'Cybersecurity and Privacy' and special != 'Data Science' and special != 'Digital Curation':
@@ -355,8 +352,7 @@ def main():
   elif option == "Core Courses":
       print(class_instance.core_courses())
   elif option == "Specializations":
-      class_instance.get_classes()
-      print("S") 
+      print(class_instance.specializations())
   elif option == "Advising Contacts":
       print("A") 
   elif option == "Credit Counter":
