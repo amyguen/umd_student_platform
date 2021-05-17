@@ -1,5 +1,7 @@
 
 """ A platform for UMD I-School students to plan their schedules. """
+import re
+import fileinput
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -46,13 +48,8 @@ class Student:
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
-<<<<<<< HEAD
-                    '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name or '+
-=======
                     '\nSpecializations \nCredit Counter \n '+ 
                     'Update Classes Taken \nChange Name or '+
->>>>>>> refs/remotes/origin/main
                     'Graduation Year\n')
       return welcome
    
@@ -68,17 +65,19 @@ class Student:
       """
       count = 0
       self.classes_taken = []
-      class_options = "/:?(?P<class_prefix>[MATHSPYCIN]+)/gm"
+      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
-                  "you have taken, one at a time, in the following format:" +
+                  "you have taken, one at a time, in the following format: " +
                   "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
                   " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
         if classes.lower() != "stop":
-          self.classes_taken.append(classes)
-        else:
-          if classes 
+          if not re.search(class_options, classes):
+            print("Not a valid class")
+          else:
+            self.classes_taken.append(classes)
+        else: 
           count += 1     
       return self.classes_taken
 
@@ -273,35 +272,69 @@ class Student:
 
 
     def update_classes(self):
-      update = input('Thank you for updating your classes taken! This will '+
-                  ' help us help you! \n Like before, please enter all of the '+
-                  'INST-related classes that you have taken, one at a time, ' +
-                  'in the following format: CLAS 100 \n For example, ' +
-                  "INST 201.\n\n Enter stop when you have finished. Don't " +
-                  'forget to include I-School major benchmarks, like math and' +
-                  " psychology courses! Thank you! \n")
+      flag = True
+      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
 
-      append_class = {self.classes_taken.append(update) for update in update if update.lower() != 'stop'}
+      while flag:
+        update = input('Thank you for updating your classes taken! This will '+
+                    ' help us help you! \n Like before, please enter all of the '+
+                    'INST-related classes that you have taken, one at a time, ' +
+                    'in the following format: CLAS 100 \n For example, ' +
+                    "INST 201.\n\n Enter stop when you have finished. Don't " +
+                    'forget to include I-School major benchmarks, like math and' +
+                    " psychology courses! Thank you! \n")
+        if update.lower() != "stop":
+          if not re.search(class_options, update):
+            print("Not a valid class")
+          else:
+            if self.exists(update):
+              print("According to our documentation, you've already taken this class.")
+            else:
+              self.classes_taken.append(update)
+              self.add_new_classes_to_text(update)
+        else: 
+          flag = False
 
-      
-      if update.lower() != "stop":
-        self.classes_taken.append(update)
-      else:
-        count += 1
-      self.write_to_file()
+    def exists(self, str):
+      with open('Students/'+ self.student_id, 'r', encoding = 'utf-8') as f:
+        if str in f.read():
+          return True
+        else:
+          return False
 
-    def change_name_gradyear():
-      options = input('Here, you can change your name and your expected ' +
-                'graduation year. \nTo update your name, type name. To update' +
-                ' your graduation year, type grad year. To update both, ' +
-                'type both. Thank you!')
-      if options.lower() == 'name':
-        self.student_name = input("Please enter your full name: ")
-      
-      grad_year = input('Please enter your expected graduation year: ')
-      self.write_to_file()
+    def add_new_classes_to_text(self, c):
+      f = open('Students/'+ self.student_id, 'a', encoding = 'utf-8')
+      c = "," + c
+      f.write(c)
 
 
+    def change_name_gradyear(self):
+      running_flag = True
+      while running_flag:
+        options = input('Here, you can change your name and your expected ' +
+                  'graduation year. \nTo update your name, type name. To update' +
+                  ' your graduation year, type grad year. To update both, ' +
+                  'type both. Thank you!')
+        if options.lower() == 'name':
+          new_name = input("Please enter your full name: ")
+          self.student_name = new_name
+          self.write_to_file()
+          running_flag = False
+        elif options.lower() == 'grad year':
+          new_grad_year = input('Please enter your updated graduation year: ')
+          self.grad_year = new_grad_year
+          self.write_to_file()
+          running_flag = False
+        elif options.lower() == 'both':
+          new_name = input("Please enter your full name: ")
+          new_grad_year = input('Please enter your updated graduation year: ')
+          self.grad_year = new_grad_year
+          self.student_name = new_name
+          self.write_to_file()
+          running_flag = False
+        else:
+          print("I'm sorry, you didn't pick a valid option")
+          running_flag = True
 
     def write_to_file(self):
       """
@@ -310,7 +343,6 @@ class Student:
         class_list = ','.join(self.classes_taken)
         new_file = self.student_name + ',' + self.grad_year + ',' + class_list
         f.write(new_file)
-
 
 
 def load_from_file(student_id):
@@ -353,7 +385,7 @@ def main():
   option = class_instance.greet()
     
   if option == "Benchmark I":
-      print(class_instance.benchmark_I())  
+      print(class_instance.benchmark_I()) 
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
   elif option == 'Update Classes':
