@@ -84,14 +84,6 @@ class Student:
 
 
     def benchmark_I(self):
-      """
-           for classes in self.classes_taken:
-      if "MATH 115"
-        split_class = classes.split()
-        convert_to_integer = int(split_class[1])
-        if convert_to_integer < "115":
-          math_flag = False
-      """
       math_flag = False
       psych_flag = True
       for classes in self.classes_taken:
