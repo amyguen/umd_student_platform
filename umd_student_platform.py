@@ -48,6 +48,11 @@ class Student:
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
+<<<<<<< HEAD
+=======
+                    '\nMajor Specializations \nCredit Counter \n'+
+                    'Update Classes Taken \nChange Name or '+
+>>>>>>> 0ed5c1d91ac4fe63888274c7d8d4921e95d8bedd
                     '\nSpecializations \nCredit Counter \n '+ 
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n')
@@ -83,7 +88,8 @@ class Student:
 
 
     def benchmark_I(self):
-      """ 
+      """
+       
       """
       math_flag = True
       psych_flag = True
@@ -106,6 +112,20 @@ class Student:
 
     def benchmark_II():
       """
+      This function checks to see if the user has completed 
+      benchmark II courses based on input. If all three 
+      courses satisfy our condition then you will have 
+      completed benchmark II, if not our code will print 
+      specific statements based on what the user has 
+      completed.
+
+      Args: no required arguments
+      
+      Returns: does not return a specific or mutable value
+
+      Side effects: no side effect since this function does
+      not print a value. 
+
       """
       stat_flag = True
       inst126_flag = True
@@ -117,6 +137,20 @@ class Student:
         inst126_flag = False
       elif 'INST 201' not in self.classes_taken:
         inst201_flag = False
+
+      if stat_flag and inst126_flag and inst201_flag:
+        print(f'You have completed all of your Benchmark II courses! ' +
+              f'Congratulations, {self.student_name}!')
+      else:
+        print('You have not completed the Benchmark II requirements.')
+        if stat_flag == False:
+          print('You have not taken STAT 100. ')
+        if inst126_flag == False:
+          print('You have not taken INST 126. ')
+        if inst201_flag == False:
+          print('You have not taken INST 201. ')
+
+        
     
     
     def core_courses(self):
@@ -396,8 +430,6 @@ def main():
       print(class_instance.core_courses())
   elif option == "Specializations":
       print(class_instance.specializations())
-  elif option == "Advising Contacts":
-      print("A") 
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
               ' INST credits.')
