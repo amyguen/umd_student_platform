@@ -50,7 +50,7 @@ class Student:
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n\n' + 
-                    'Enter quit to exit I-School help.\n')
+                    'Enter quit to exit I-School help.\n \n\n')
       return welcome
    
 
