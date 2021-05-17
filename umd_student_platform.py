@@ -45,11 +45,12 @@ class Student:
       """
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
-                    'Please choose from the following list of options: \n' +
+                    'Please choose from the following list of options: \n\n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
-                    'Graduation Year\n')
+                    'Graduation Year\n\n' + 
+                    'Enter quit to exit I-School help.\n')
       return welcome
    
 
@@ -437,8 +438,34 @@ def main():
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
               ' INST-related credits.')
+  elif option == 'quit':
+    print("Thank you for using this platform! Goodbye!")
   else:
       print("I'm sorry, we don't know how to help you with that.")
+      
+  while option != 'quit':
+    option = class_instance.greet()
+    
+    if option == "Benchmark I":
+        print(class_instance.benchmark_I()) 
+    elif option == 'Benchmark II':
+        print(class_instance.benchmark_II())
+    elif option == 'Update Classes':
+      print(class_instance.update_classes())
+    elif option == 'Update Name or Grad Year':
+        print(class_instance.change_name_gradyear())
+    elif option == "Core Courses":
+        print(class_instance.core_courses())
+    elif option == "Specializations":
+        print(class_instance.specializations())
+    elif option == "Credit Counter":
+        print('You have completed '+ str(class_instance.credit_counter()) + 
+                ' INST credits.')
+    elif option == "quit":
+      print("Thank you for using this platform! Goodbye!")
+    else:
+        print("I'm sorry, we don't know how to help you with that.")
+    
 
 
 if __name__ == "__main__":
