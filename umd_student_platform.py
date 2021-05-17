@@ -74,16 +74,11 @@ class Student:
                   "benchmarks, like math and psychology courses! Thank you! \n")
           
         if classes.lower() != "stop":
-<<<<<<< HEAD
-          self.classes_taken.append(classes)
-        else:
-=======
           if not re.search(class_options, classes):
             print("Not a valid class")
           else:
             self.classes_taken.append(classes)
         else: 
->>>>>>> e2840f1b096ed82366deb050468813b9beb00604
           count += 1     
       return self.classes_taken
 
@@ -99,35 +94,15 @@ class Student:
       """
       math_flag = False
       psych_flag = True
-      
-
-
-<<<<<<< HEAD
-
-      for classes in self.classes_taken:
-        split_classes = classes.split('')
-        split_words = split_classes.split()
-        convert_to_integer = int(split_classes[1])
-        if "MATH" in split_classes[0] and convert_to_integer < 115:
-          math_flag = False 
-
-        elif 'PSYC' not in split_classes[0] and convert_to_integer != 100: 
-          psych_flag = False
-=======
-<<<<<<< HEAD
       for classes in self.classes_taken:
         split = classes.split()
         if split[0] == 'MATH':
           if int(split[1]) >= 115:
             math_flag = True
         
-=======
-      if 'MATH 115' not in self.classes_taken:
-        math_flag = False
->>>>>>> refs/remotes/origin/main
       if 'PSYC 100' not in self.classes_taken:
         psych_flag = False
->>>>>>> e2840f1b096ed82366deb050468813b9beb00604
+
 
       if math_flag and psych_flag:
           print(f'You have completed all of your Benchmark I courses! ' +
