@@ -1,5 +1,6 @@
 
 """ A platform for UMD I-School students to plan their schedules. """
+import re
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -44,13 +45,12 @@ class Student:
       """
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
-                    'Please choose from the following list of options: \n' +
+                    'Please choose from the following list of options: \n\n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name or '+
-                    '\nSpecializations \nCredit Counter \n '+ 
+                    '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
-                    'Graduation Year\n')
+                    'Graduation Year\n\n' + 
+                    'Enter quit to exit I-School help.\n')
       return welcome
    
 
@@ -65,17 +65,25 @@ class Student:
       """
       count = 0
       self.classes_taken = []
-      class_options = "/:?(?P<class_prefix>[MATHSPYCIN]+)/gm"
+      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
-                  "you have taken, one at a time, in the following format:" +
+                  "you have taken, one at a time, in the following format: " +
                   "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
                   " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
           
         if classes.lower() != "stop":
+<<<<<<< HEAD
           self.classes_taken.append(classes)
         else:
+=======
+          if not re.search(class_options, classes):
+            print("Not a valid class")
+          else:
+            self.classes_taken.append(classes)
+        else: 
+>>>>>>> e2840f1b096ed82366deb050468813b9beb00604
           count += 1     
       return self.classes_taken
 
@@ -89,11 +97,12 @@ class Student:
         if convert_to_integer < "115":
           math_flag = False
       """
-      math_flag = True
+      math_flag = False
       psych_flag = True
       
 
 
+<<<<<<< HEAD
 
       for classes in self.classes_taken:
         split_classes = classes.split('')
@@ -104,6 +113,21 @@ class Student:
 
         elif 'PSYC' not in split_classes[0] and convert_to_integer != 100: 
           psych_flag = False
+=======
+<<<<<<< HEAD
+      for classes in self.classes_taken:
+        split = classes.split()
+        if split[0] == 'MATH':
+          if int(split[1]) >= 115:
+            math_flag = True
+        
+=======
+      if 'MATH 115' not in self.classes_taken:
+        math_flag = False
+>>>>>>> refs/remotes/origin/main
+      if 'PSYC 100' not in self.classes_taken:
+        psych_flag = False
+>>>>>>> e2840f1b096ed82366deb050468813b9beb00604
 
       if math_flag and psych_flag:
           print(f'You have completed all of your Benchmark I courses! ' +
@@ -114,9 +138,11 @@ class Student:
           print('You have not taken MATH 115 or higher.')
         if psych_flag == False:
           print('You have not taken PSYC 100.')
-  
 
-    def benchmark_II():
+      return "\n"
+
+
+    def benchmark_II(self):
       """
       This function checks to see if the user has completed 
       benchmark II courses based on input. If all three 
@@ -139,9 +165,9 @@ class Student:
 
       if 'STAT 100' not in self.classes_taken:
         stat_flag = False
-      elif 'INST 126' not in self.classes_taken:
+      if 'INST 126' not in self.classes_taken:
         inst126_flag = False
-      elif 'INST 201' not in self.classes_taken:
+      if 'INST 201' not in self.classes_taken:
         inst201_flag = False
 
       if stat_flag and inst126_flag and inst201_flag:
@@ -156,13 +182,13 @@ class Student:
         if inst201_flag == False:
           print('You have not taken INST 201. ')
 
-        
-    
+      return "\n"
+
+
     
     def core_courses(self):
       """
       """
-
       core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
                       'INST 327': True, 'INST 335': True, 'INST 346': True, 
                       'INST 352': True, 'INST 362': True}
@@ -182,7 +208,7 @@ class Student:
       if 'INST 352' not in self.classes_taken:
         core_courses['INST 352'] = False
       if 'INST 362' not in self.classes_taken:
-        core_courses['INST 352'] = False
+        core_courses['INST 362'] = False
         
       not_taken = []
       for course in core_courses:
@@ -194,7 +220,10 @@ class Student:
       else:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
-        
+      return "\n"
+
+
+
     def specializations(self):
       """
       """
@@ -214,7 +243,6 @@ class Student:
       classes = {}
       
       if special != 'Cybersecurity and Privacy' and special != 'Data Science' and special != 'Digital Curation':
-        
         print("Your selection was not listed. Please try again.")
    
       elif special == 'Cybersecurity and Privacy':
@@ -224,7 +252,6 @@ class Student:
           cyber_and_priv['INST365'] = False
         if 'INST 366' not in self.classes_taken:
           cyber_and_priv['INST366'] = False
-          
           
         count = 3
         if 'INST 464' not in self.classes_taken:
@@ -310,37 +337,78 @@ class Student:
       return credits
       
 
-
     def update_classes(self):
-      update = input('Thank you for updating your classes taken! This will '+
-                  ' help us help you! \n Like before, please enter all of the '+
-                  'INST-related classes that you have taken, one at a time, ' +
-                  'in the following format: CLAS 100 \n For example, ' +
-                  "INST 201.\n\n Enter stop when you have finished. Don't " +
-                  'forget to include I-School major benchmarks, like math and' +
-                  " psychology courses! Thank you! \n")
+      """
+      """
+      flag = True
+      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
 
-      append_class = {self.classes_taken.append(update) for update in update if update.lower() != 'stop'}
+      while flag:
+        update = input('Thank you for updating your classes taken! This will '+
+                    ' help us help you! \n Like before, please enter all of the '+
+                    'INST-related classes that you have taken, one at a time, ' +
+                    'in the following format: CLAS 100 \n For example, ' +
+                    "INST 201.\n\n Enter stop when you have finished. Don't " +
+                    'forget to include I-School major benchmarks, like math and' +
+                    " psychology courses! Thank you! \n")
+        if update.lower() != "stop":
+          if not re.search(class_options, update):
+            print("Not a valid class")
+          else:
+            if self.exists(update):
+              print("According to our documentation, you've already taken this class.")
+            else:
+              self.classes_taken.append(update)
+              self.add_new_classes_to_text(update)
+        else: 
+          flag = False
 
-      
-      if update.lower() != "stop":
-        self.classes_taken.append(update)
-      else:
-        count += 1
-      self.write_to_file()
+    def exists(self, str):
+      """
+      """
+      with open('Students/'+ self.student_id, 'r', encoding = 'utf-8') as f:
+        if str in f.read():
+          return True
+        else:
+          return False
 
-    def change_name_gradyear():
-      options = input('Here, you can change your name and your expected ' +
-                'graduation year. \nTo update your name, type name. To update' +
-                ' your graduation year, type grad year. To update both, ' +
-                'type both. Thank you!')
-      if options.lower() == 'name':
-        self.student_name = input("Please enter your full name: ")
-      
-      grad_year = input('Please enter your expected graduation year: ')
-      self.write_to_file()
+    def add_new_classes_to_text(self, c):
+      """
+      """
+      f = open('Students/'+ self.student_id, 'a', encoding = 'utf-8')
+      c = "," + c
+      f.write(c)
 
 
+    def change_name_gradyear(self):
+      """
+      """
+      running_flag = True
+      while running_flag:
+        options = input('Here, you can change your name and your expected ' +
+                  'graduation year. \nTo update your name, type name. To update' +
+                  ' your graduation year, type grad year. To update both, ' +
+                  'type both. Thank you! \n')
+        if options.lower() == 'name':
+          new_name = input("Please enter your full name: ")
+          self.student_name = new_name
+          self.write_to_file()
+          running_flag = False
+        elif options.lower() == 'grad year':
+          new_grad_year = input('Please enter your updated graduation year: ')
+          self.grad_year = new_grad_year
+          self.write_to_file()
+          running_flag = False
+        elif options.lower() == 'both':
+          new_name = input("Please enter your full name: ")
+          new_grad_year = input('Please enter your updated graduation year: ')
+          self.grad_year = new_grad_year
+          self.student_name = new_name
+          self.write_to_file()
+          running_flag = False
+        else:
+          print("I'm sorry, you didn't pick a valid option")
+          running_flag = True
 
     def write_to_file(self):
       """
@@ -349,7 +417,6 @@ class Student:
         class_list = ','.join(self.classes_taken)
         new_file = self.student_name + ',' + self.grad_year + ',' + class_list
         f.write(new_file)
-
 
 
 def load_from_file(student_id):
@@ -392,24 +459,48 @@ def main():
   option = class_instance.greet()
     
   if option == "Benchmark I":
-      print(class_instance.benchmark_I())  
+      print(class_instance.benchmark_I()) 
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
-  elif option == 'Update Classes':
+  elif option == 'Update Classes Taken':
     print(class_instance.update_classes())
-  elif option == 'Update Name or Grad Year':
+  elif option == 'Change Name or Grad Year':
       print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
       print(class_instance.core_courses())
-  elif option == "Specializations":
+  elif option == "Major Specializations":
       print(class_instance.specializations())
-  elif option == "Advising Contacts":
-      print("A") 
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
-              ' INST credits.')
+              ' INST-related credits.')
+  elif option == 'quit':
+    print("Thank you for using this platform! Goodbye!")
   else:
       print("I'm sorry, we don't know how to help you with that.")
+      
+  while option != 'quit':
+    option = class_instance.greet()
+    
+    if option == "Benchmark I":
+        print(class_instance.benchmark_I()) 
+    elif option == 'Benchmark II':
+        print(class_instance.benchmark_II())
+    elif option == 'Update Classes':
+      print(class_instance.update_classes())
+    elif option == 'Update Name or Grad Year':
+        print(class_instance.change_name_gradyear())
+    elif option == "Core Courses":
+        print(class_instance.core_courses())
+    elif option == "Specializations":
+        print(class_instance.specializations())
+    elif option == "Credit Counter":
+        print('You have completed '+ str(class_instance.credit_counter()) + 
+                ' INST credits.')
+    elif option == "quit":
+      print("Thank you for using this platform! Goodbye!")
+    else:
+        print("I'm sorry, we don't know how to help you with that.")
+    
 
 
 if __name__ == "__main__":
