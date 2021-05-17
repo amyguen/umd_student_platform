@@ -1,7 +1,5 @@
 
-""" A platform for UMD I-School students to look up class prerequisites, plan 
-    their schedules, and find contact information for advisors.
-"""
+""" A platform for UMD I-School students to plan their schedules. """
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -48,8 +46,8 @@ class Student:
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
                     'Benchmark I Courses \nBenchmark II Courses \nCore Courses'+
-                    '\nMajor Specializations \nCredit Counter \nAdvising '+
-                    'Contacts \nUpdate Classes Taken \nChange Name or '+
+                    '\nMajor Specializations \nCredit Counter '+
+                    '\nUpdate Classes Taken \nChange Name or '+
                     'Graduation Year\n')
       return welcome
    
@@ -157,39 +155,30 @@ class Student:
       return credits
       
 
-    def advising_contacts(student_id, student_name, specialization):
-        """ Returns to the student a list of advisors and their contact 
-            information that are best recommended to the student based on their 
-            specialization.
 
-        Args:
-            student_id (int): the unique identifying number of the student
-            student_name (str): the name of the student
-            specialization (str): optional, the name of the specialization of 
-                the student, default none
-        
-        Returns:
-            list: the name and contact information of advisors that are best
-                recommended for the student
-        """
-
-
-
-
-    def update_classes(self):
-      update = input('Please enter all of the INST-related classes that ' +
-                  "you have taken, one at a time, in the following format:" +
-                  "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
-                  " have finished. Don't forget to include I-School major " +
-                  "benchmarks, like math and psychology courses! Thank you! \n")
-      if classes.lower() != "stop":
-          self.classes_taken.append(classes)
-      else:
-        count += 1
-      self.write_to_file()
+    #def update_classes(self):
+     # update = input('Thank you for updating your classes taken! This will '+
+      #            ' help us help you! \n Like before, please enter all of the '+
+       #           'INST-related classes that you have taken, one at a time, ' +
+        #          'in the following format: CLAS 100 \n For example, ' +
+         #         "INST 201.\n\n Enter stop when you have finished. Don't " +
+          #        'forget to include I-School major benchmarks, like math and' +
+           #       " psychology courses! Thank you! \n")
+     # if .lower() != "stop":
+      #    self.classes_taken.append(classes)
+      #else:
+      #  count += 1
+      #self.write_to_file()
 
     def change_name_gradyear():
-
+      options = input('Here, you can change your name and your expected ' +
+                'graduation year. \nTo update your name, type name. To update' +
+                ' your graduation year, type grad year. To update both, ' +
+                'type both. Thank you!')
+      if options.lower() == 'name':
+        self.student_name = input("Please enter your full name: ")
+      
+      grad_year = input('Please enter your expected graduation year: ')
       self.write_to_file()
 
 
@@ -246,7 +235,7 @@ def main():
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
-  elif option == 'Change Name':
+  elif option == 'Update Classes':
     print(class_instance.update_classes())
   elif option == 'Update Name or Grad Year':
     print(class_instance.change_name_gradyear())
