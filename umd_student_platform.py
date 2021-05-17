@@ -80,7 +80,8 @@ class Student:
 
 
     def benchmark_I(self):
-      """ 
+      """
+       
       """
       math_flag = True
       psych_flag = True
@@ -103,6 +104,20 @@ class Student:
 
     def benchmark_II():
       """
+      This function checks to see if the user has completed 
+      benchmark II courses based on input. If all three 
+      courses satisfy our condition then you will have 
+      completed benchmark II, if not our code will print 
+      specific statements based on what the user has 
+      completed.
+
+      Args: no required arguments
+      
+      Returns: does not return a specific or mutable value
+
+      Side effects: no side effect since this function does
+      not print a value. 
+
       """
       stat_flag = True
       inst126_flag = True
@@ -114,6 +129,20 @@ class Student:
         inst126_flag = False
       elif 'INST 201' not in self.classes_taken:
         inst201_flag = False
+
+      if stat_flag and inst126_flag and inst201_flag:
+        print(f'You have completed all of your Benchmark II courses! ' +
+              f'Congratulations, {self.student_name}!')
+      else:
+        print('You have not completed the Benchmark II requirements.')
+        if stat_flag == False:
+          print('You have not taken STAT 100. ')
+        if inst126_flag == False:
+          print('You have not taken INST 126. ')
+        if inst201_flag == False:
+          print('You have not taken INST 201. ')
+
+        
     
     
     def core_courses(self):
