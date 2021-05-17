@@ -1,7 +1,6 @@
 
 """ A platform for UMD I-School students to plan their schedules. """
 import re
-import fileinput
 
 class Student:
     """ An instance of a UMD Information Science student.
@@ -48,12 +47,7 @@ class Student:
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
                     'Benchmark I \nBenchmark II \nCore Courses'+
-<<<<<<< HEAD
-=======
                     '\nMajor Specializations \nCredit Counter \n'+
-                    'Update Classes Taken \nChange Name or '+
->>>>>>> 0ed5c1d91ac4fe63888274c7d8d4921e95d8bedd
-                    '\nSpecializations \nCredit Counter \n '+ 
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\n')
       return welcome
@@ -150,13 +144,11 @@ class Student:
         if inst201_flag == False:
           print('You have not taken INST 201. ')
 
-        
-    
+
     
     def core_courses(self):
       """
       """
-
       core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
                       'INST 327': True, 'INST 335': True, 'INST 346': True, 
                       'INST 352': True, 'INST 362': True}
@@ -188,7 +180,10 @@ class Student:
       else:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
-        
+
+
+
+
     def specializations(self):
       """
       """
@@ -208,7 +203,6 @@ class Student:
       classes = {}
       
       if special != 'Cybersecurity and Privacy' and special != 'Data Science' and special != 'Digital Curation':
-        
         print("Your selection was not listed. Please try again.")
    
       elif special == 'Cybersecurity and Privacy':
@@ -218,7 +212,6 @@ class Student:
           cyber_and_priv['INST365'] = False
         if 'INST 366' not in self.classes_taken:
           cyber_and_priv['INST366'] = False
-          
           
         count = 3
         if 'INST 464' not in self.classes_taken:
@@ -304,8 +297,9 @@ class Student:
       return credits
       
 
-
     def update_classes(self):
+      """
+      """
       flag = True
       class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
 
@@ -330,6 +324,8 @@ class Student:
           flag = False
 
     def exists(self, str):
+      """
+      """
       with open('Students/'+ self.student_id, 'r', encoding = 'utf-8') as f:
         if str in f.read():
           return True
@@ -337,12 +333,16 @@ class Student:
           return False
 
     def add_new_classes_to_text(self, c):
+      """
+      """
       f = open('Students/'+ self.student_id, 'a', encoding = 'utf-8')
       c = "," + c
       f.write(c)
 
 
     def change_name_gradyear(self):
+      """
+      """
       running_flag = True
       while running_flag:
         options = input('Here, you can change your name and your expected ' +
