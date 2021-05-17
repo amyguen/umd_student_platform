@@ -86,11 +86,15 @@ class Student:
       """
        
       """
-      math_flag = True
+      math_flag = False
       psych_flag = True
 
-      if 'MATH 115' not in self.classes_taken:
-        math_flag = False
+      for classes in self.classes_taken:
+        split = classes.split()
+        if split[0] == 'MATH':
+          if int(split[1]) >= 115:
+            math_flag = True
+        
       if 'PSYC 100' not in self.classes_taken:
         psych_flag = False
 
