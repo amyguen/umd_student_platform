@@ -45,15 +45,12 @@ class Student:
       welcome = input(f'Welcome, {self.student_name} (UID: {self.student_id}),'+
                     ' to I-School help! What can we assist you with? ' +
                     'Please choose from the following list of options: \n' +
-<<<<<<< HEAD
-                    'Benchmark I Courses \nBenchmark II Courses \nCore Courses'+
+                    'Benchmark I\nBenchmark II\nCore Courses'+
                     '\nMajor Specializations \nCredit Counter '+
                     '\nUpdate Classes Taken \nChange Name or '+
-=======
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \nAdvising '+
                     'Contacts \nUpdate Classes Taken \nChange Name or '+
->>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
                     'Graduation Year\n')
       return welcome
    
@@ -155,9 +152,82 @@ class Student:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
         
-    def specializations(specialization):
+    def specializations(self):
       """
       """
+      cyber_and_priv = {'INST364' = True, 'INST365' = True, 'INST366' = True}
+      choose_two = {'INST464' = True, 'INST466' = True, 'INST467' = True}
+      
+      data_science = {'INST354' = True, 'INST377' = True, 'INST414' = True,
+                      'INST447' = True, 'INST462' = True}
+      
+      digital_cur = {'INST341' = True, 'INST441' = True, 'INST442' = True,
+                     'INST443' = True, 'INST448' = True}
+      
+      special = input("Which specialization are you interested in seeing the " 
+                      + "requirements for? \nPlease choose from the " 
+                      + "following list:\nCybersecurty and Privacy\n" 
+                      + "Data Science\nDigital Curation")
+      classes = {}
+      
+      if special != 'Cybersecurity and Privacy' and special != 'Data Science'
+      and special != 'Digital Curation':
+        
+        print("Your selection was not listed. Please try again.")
+   
+      elif special == 'Cybersecurity and Privacy':
+        if 'INST 364' not in self.classes_taken:
+          cyber_and_priv['INST364'] = False
+        if 'INST 365' not in self.classes_taken:
+          cyber_and_priv['INST365'] = False
+        if 'INST 366' not in self.classes_taken:
+          cyber_and_priv['INST366'] = False
+          
+          
+        count = 3
+        if 'INST 464' not in self.classes_taken:
+          choose_two['INST464'] = False
+          count -=1
+        if 'INST 466' not in self.classes_taken:
+          choose_two['INST466'] = False
+          count -=1
+        if 'INST 467' not in self.classes_taken:
+          choose_two['INST 467'] = False
+          count -=1
+        
+        classes = cyber_and_priv
+        
+        
+          
+      elif special == 'Data Science':
+        if 'INST 354' not in self.classes_taken:
+          data_science['INST354'] = False
+        if 'INST 377' not in self.classes_taken:
+          data_science['INST377'] = False
+        if 'INST 414' not in self.classes_taken:
+          data_science['INST414'] = False
+        if 'INST 447' not in self.classes_taken:
+          data_science['INST447'] = False
+        if 'INST 462' not in self.classes_taken:
+          data_science['INST462'] = False
+          
+        classes = data_science
+          
+      elif special == 'Digital Curation':
+        if 'INST 341' not in self.classes_taken:
+          digital_cur['INST341'] = False
+        if 'INST 441' not in self.classes_taken:
+          digital_cur['INST441'] = False
+        if 'INST 442' not in self.classes_taken:
+          digital_cur['INST442'] = False
+        if 'INST 443' not in self.classes_taken:
+          digital_cur['INST443'] = False
+        if 'INST 448' not in self.classes_taken:
+          digital_cur['INST448'] = False
+        
+        classes = digital_cur
+      
+
 
 
     def credit_counter(self):
@@ -248,13 +318,8 @@ def main():
       print(class_instance.benchmark_I())  
   elif option == 'Benchmark II':
       print(class_instance.benchmark_II())
-<<<<<<< HEAD
   elif option == 'Update Classes':
     print(class_instance.update_classes())
-=======
-  elif option == 'Change Name':
-      print(class_instance.update_classes())
->>>>>>> 8dea784822e2fc14be859d1a2a35a632a259c845
   elif option == 'Update Name or Grad Year':
       print(class_instance.change_name_gradyear())
   elif option == "Core Courses":
