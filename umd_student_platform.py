@@ -84,15 +84,6 @@ class Student:
 
 
     def benchmark_I(self):
-<<<<<<< HEAD
-      """This function checks to see if the user has completed all
-      benchmark I courses.
-       
-      Side Effects:
-        prints message onto the console
-      """
-=======
->>>>>>> 14a7d8677d858a955e4dd8c2f55c4284827a523f
       math_flag = False
       psych_flag = True
       for classes in self.classes_taken:
@@ -309,10 +300,13 @@ class Student:
 
 
     def credit_counter(self):
-      """
+      """ 
       """
       credits = len(self.classes_taken) * 3
-      return credits
+      if self.classes_taken == []:
+        raise ValueError('Return to the beginning and input your classes taken.')
+      else:
+        return credits
       
 
     def update_classes(self):
