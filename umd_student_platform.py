@@ -316,7 +316,10 @@ class Student:
         credits (int): the number of credits 
       """
       credits = len(self.classes_taken) * 3
-      return credits
+      if self.classes_taken == []:
+        raise ValueError('Return to the beginning and input your classes taken.')
+      else:
+        return credits
       
 
     def update_classes(self):
