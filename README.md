@@ -4,6 +4,8 @@ Repository Files
 
   * umd_student_platform.py: contains all the methods and classes as well as the main method for umd_student_platform
   * project_tests.py: contains the tests for umd_student_platform.py which tests benchmark_I(), credit_counter(), and get_classes() methods
+  * Students folder: contains one file for each student who has ever visited our platform, named by the unique student id identifier.
+  *   each file in this Students folder contains the unique student's student name, student graduation year, and a list of all of the classes that they have taken        (gotten from their input)
 
 Running the program from the command line
 
