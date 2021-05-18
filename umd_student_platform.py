@@ -62,6 +62,9 @@ class Student:
       Returns: 
         student_classes (list) : the inputted classes that the student has 
         taken in the Information Science major. 
+        
+      Side Effects:
+        changes the classes in the Student object
       """
       count = 0
       self.classes_taken = []
@@ -368,8 +371,8 @@ class Student:
       running_flag = True
       while running_flag:
         options = input('Here, you can change your name and your expected ' +
-                  'graduation year. \nTo update your name, type name. To update' +
-                  ' your graduation year, type grad year. To update both, ' +
+                  'graduation year. \nTo update your name, type name. To update' 
+                  + ' your graduation year, type grad year. To update both, ' +
                   'type both. Thank you! \n')
         if options.lower() == 'name':
           new_name = input("Please enter your full name: ")
@@ -415,7 +418,8 @@ def load_from_file(student_id):
   
 
 def main():
-  """
+  """Runs the umd_student_platform program by greeting and determing what
+  the student wants to do and executes that command
   """
   while True:
 
