@@ -84,6 +84,15 @@ class Student:
 
 
     def benchmark_I(self):
+<<<<<<< HEAD
+=======
+      """This function checks to see if the user has completed all
+      benchmark I courses.
+       
+      Side Effects:
+        prints message onto the console
+      """
+>>>>>>> 87263ab5fd88dd90a3a4ffc4f4cdbc69471f2a26
       math_flag = False
       psych_flag = True
       for classes in self.classes_taken:
@@ -300,7 +309,15 @@ class Student:
 
 
     def credit_counter(self):
+<<<<<<< HEAD
       """ 
+=======
+      """ Calculates the number of INST course credits that the student
+      has accumulated for major requirements
+      
+      Returns:
+        credits (int): the number of credits 
+>>>>>>> 87263ab5fd88dd90a3a4ffc4f4cdbc69471f2a26
       """
       credits = len(self.classes_taken) * 3
       if self.classes_taken == []:
