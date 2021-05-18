@@ -1,5 +1,7 @@
 
-""" A platform for UMD I-School students to plan their schedules. """
+""" A platform for UMD I-School students to implement to help plan their class
+schedules. """
+
 import re
 
 class Student:
@@ -11,6 +13,7 @@ class Student:
         grad_year (int): the intended graduation year of the student
     """
     
+
     def __init__(self, student_id, student_name, grad_year, classes_taken):
         """ Assigns attributes to objects, instantiates a student class
 
@@ -36,9 +39,6 @@ class Student:
       number to create a customized greeting based on the inputs of the student 
       trying to use our program.
 
-      Args:
-        self (Student) : an instance of the Student Class
-
       Returns: 
         welcome (str) : This method returns our welcome statements with the 
           student's name and identification number in the greeting.
@@ -49,9 +49,9 @@ class Student:
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
-                    'Graduation Year\n' + 
+                    'Graduation Year\n\n' + 
                     'To choose an option, type the option how it is written ' +
-                    'above. \n\n Enter quit to exit I-School help.\n\n\n')
+                    'above. \n\nEnter quit to exit I-School help.\n\n\n')
       return welcome
    
 
@@ -72,7 +72,7 @@ class Student:
       class_options = r"^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
-                  "you have taken, one at a time, in the following format: " +
+                  "you have taken, one at a time, in the following format:\n" +
                   "CLAS 100 \n For example, INST 201.\n\n Enter stop when you" +
                   " have finished. Don't forget to include I-School major " +
                   "benchmarks, like math and psychology courses! Thank you! \n")
@@ -90,6 +90,9 @@ class Student:
     def benchmark_I(self):
       """This function checks to see if the user has completed all
       benchmark I courses.
+
+      Returns:
+        new line (this was so our method would not return None)
        
       Side Effects:
         prints message onto the console
@@ -105,7 +108,6 @@ class Student:
       if 'PSYC 100' not in self.classes_taken:
         psych_flag = False
 
-
       if math_flag and psych_flag:
           print(f'You have completed all of your Benchmark I courses! ' +
                 f'Congratulations, {self.student_name}!')
@@ -118,20 +120,20 @@ class Student:
           
       return "\n"
 
+
     def benchmark_II(self):
-      """
-      This function checks to see if the user has completed 
+      """This function checks to see if the user has completed 
       benchmark II courses based on input. If all three 
       courses satisfy our condition then you will have 
       completed benchmark II, if not our code will print 
       specific statements based on what the user has 
       completed.
 
-      Args: no required arguments
+       Returns:
+        new line (this was so our method would not return None)
 
       Side effects: 
         prints message onto the console
-
       """
       stat_flag = True
       inst126_flag = True
@@ -158,8 +160,12 @@ class Student:
 
       return "\n"
   
+
     def core_courses(self):
       """Checks to see if the student has completed all core courses.
+      
+       Returns:
+        new line (this was so our method would not return None)
       
       Side Effects:
         prints a message onto the console 
@@ -197,6 +203,7 @@ class Student:
         print(*not_taken, sep = '\n')
         
       return "\n"
+
 
     def specializations(self):
       """Checks based on what specialization the student wants to complete, 
@@ -315,6 +322,9 @@ class Student:
       
       Returns:
         credits (int): the number of credits 
+      
+      Raises:
+        ValueError: if the student has not taken any classes
       """
       credits = len(self.classes_taken) * 3
       if self.classes_taken == []:
@@ -324,7 +334,11 @@ class Student:
       
 
     def update_classes(self):
-      """
+      """ This method updates the list of classes a student has taken.
+
+      Side effects:
+        changes/adds classes to the Student object 
+        prints an error if the class is already in their classes_taken attribute
       """
       flag = True
       class_options = r"^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
@@ -349,8 +363,12 @@ class Student:
         else: 
           flag = False
 
+
     def exists(self, str):
-      """
+      """Assists the update_classes method by reading the unique student file
+
+      Returns:
+        True if the file can be opened and read, False otherwise
       """
       with open('Students/'+ self.student_id, 'r', encoding = 'utf-8') as f:
         if str in f.read():
@@ -358,8 +376,12 @@ class Student:
         else:
           return False
 
+
     def add_new_classes_to_text(self, c):
-      """
+      """Opens a file to be appended for the update_classes method
+      
+      Side effects:
+        writing new classes to a student file
       """
       f = open('Students/'+ self.student_id, 'a', encoding = 'utf-8')
       c = "," + c
@@ -367,7 +389,12 @@ class Student:
 
 
     def change_name_gradyear(self):
-      """
+      """This method allows a student to update their name, graduation year, or
+        both
+      
+      Side effects:
+        writing the new name or graduation year to the student file
+        prints an error if the user did not pick a valid option
       """
       running_flag = True
       while running_flag:
@@ -396,8 +423,15 @@ class Student:
           print("I'm sorry, you didn't pick a valid option")
           running_flag = True
 
+
     def write_to_file(self):
-      """
+      """ Either creates or opens and writes new information to a student file,
+        depending on which method write_to_file is called in (either main or
+        change_name_gradyear)
+
+        Side effects:
+          creates and writes in a new file
+          overwrites old information from an already existing file
       """
       with open('Students/'+ self.student_id, 'w+', encoding = 'utf-8') as f:
         class_list = ','.join(self.classes_taken)
@@ -406,7 +440,11 @@ class Student:
 
 
 def load_from_file(student_id):
-  """
+  """Retrieves information from an already existing file and instantiates a 
+    Student class
+
+  Returns:
+  class_instance (Student): a instantiation of the class Student
   """
   with open('Students/'+ student_id, 'r', encoding = 'utf-8') as f:
     for line in f:
@@ -421,6 +459,9 @@ def load_from_file(student_id):
 def main():
   """Runs the umd_student_platform program by greeting and determing what
   the student wants to do and executes that command
+
+  Side effects:
+    prints errors to the console when the user does not pick valid options
   """
   while True:
 
@@ -487,8 +528,6 @@ def main():
       print("Thank you for using this platform! Goodbye!")
     else:
         print("I'm sorry, we don't know how to help you with that.")
-
-
 
 
 if __name__ == "__main__":
