@@ -49,8 +49,9 @@ class Student:
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
-                    'Graduation Year\n\n' + 
-                    'Enter quit to exit I-School help.\n \n\n')
+                    'Graduation Year\n' + 
+                    'To choose an option, type the option how it is written ' +
+                    'above. \n\n Enter quit to exit I-School help.\n\n\n')
       return welcome
    
 
@@ -62,6 +63,9 @@ class Student:
       Returns: 
         student_classes (list) : the inputted classes that the student has 
         taken in the Information Science major. 
+        
+      Side Effects:
+        changes the classes in the Student object
       """
       count = 0
       self.classes_taken = []
@@ -84,7 +88,12 @@ class Student:
 
 
     def benchmark_I(self):
-    
+      """This function checks to see if the user has completed all
+      benchmark I courses.
+       
+      Side Effects:
+        prints message onto the console
+      """
       math_flag = False
       psych_flag = True
       for classes in self.classes_taken:
@@ -106,9 +115,8 @@ class Student:
           print('You have not taken MATH 115 or higher.')
         if psych_flag == False:
           print('You have not taken PSYC 100.')
-
+          
       return "\n"
-
 
     def benchmark_II(self):
       """
@@ -120,11 +128,9 @@ class Student:
       completed.
 
       Args: no required arguments
-      
-      Returns: does not return a specific or mutable value
 
-      Side effects: no side effect since this function does
-      not print a value. 
+      Side effects: 
+        prints message onto the console
 
       """
       stat_flag = True
@@ -151,11 +157,12 @@ class Student:
           print('You have not taken INST 201. ')
 
       return "\n"
-
-
-    
+  
     def core_courses(self):
-      """
+      """Checks to see if the student has completed all core courses.
+      
+      Side Effects:
+        prints a message onto the console 
       """
       core_courses = {'INST 311': True, 'INST 314': True, 'INST 326': True, 
                       'INST 327': True, 'INST 335': True, 'INST 346': True, 
@@ -188,12 +195,16 @@ class Student:
       else:
         print("You must still complete the following core courses: ")
         print(*not_taken, sep = '\n')
+        
       return "\n"
 
-
-
     def specializations(self):
-      """
+      """Checks based on what specialization the student wants to complete, 
+      which classes they still must complete or notifies them that they already
+      completed that specialization's classes
+      
+      Side Effects:
+        prints message onto the console
       """
       cyber_and_priv = {'INST364': True, 'INST365': True, 'INST366': True}
       choose_two = {'INST464': True, 'INST466': True, 'INST467': True}
@@ -299,10 +310,17 @@ class Student:
 
 
     def credit_counter(self):
-      """
+      """ Calculates the number of INST course credits that the student
+      has accumulated for major requirements
+      
+      Returns:
+        credits (int): the number of credits 
       """
       credits = len(self.classes_taken) * 3
-      return credits
+      if self.classes_taken == []:
+        raise ValueError('Return to the beginning and input your classes taken.')
+      else:
+        return credits
       
 
     def update_classes(self):
@@ -354,8 +372,8 @@ class Student:
       running_flag = True
       while running_flag:
         options = input('Here, you can change your name and your expected ' +
-                  'graduation year. \nTo update your name, type name. To update' +
-                  ' your graduation year, type grad year. To update both, ' +
+                  'graduation year. \nTo update your name, type name. To update' 
+                  + ' your graduation year, type grad year. To update both, ' +
                   'type both. Thank you! \n')
         if options.lower() == 'name':
           new_name = input("Please enter your full name: ")
@@ -401,7 +419,8 @@ def load_from_file(student_id):
   
 
 def main():
-  """
+  """Runs the umd_student_platform program by greeting and determing what
+  the student wants to do and executes that command
   """
   while True:
 
@@ -424,28 +443,6 @@ def main():
     else:
       print('Please enter yes or no')
   
-  option = class_instance.greet()
-    
-  if option == "Benchmark I":
-      print(class_instance.benchmark_I()) 
-  elif option == 'Benchmark II':
-      print(class_instance.benchmark_II())
-  elif option == 'Update Classes Taken':
-    print(class_instance.update_classes())
-  elif option == 'Change Name or Grad Year':
-      print(class_instance.change_name_gradyear())
-  elif option == "Core Courses":
-      print(class_instance.core_courses())
-  elif option == "Major Specializations":
-      print(class_instance.specializations())
-  elif option == "Credit Counter":
-      print('You have completed '+ str(class_instance.credit_counter()) + 
-              ' INST-related credits.')
-  elif option == 'quit':
-    print("Thank you for using this platform! Goodbye!")
-  else:
-      print("I'm sorry, we don't know how to help you with that.")
-      
   while option != 'quit':
     option = class_instance.greet()
     
