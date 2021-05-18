@@ -69,7 +69,7 @@ class Student:
       """
       count = 0
       self.classes_taken = []
-      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
+      class_options = r"^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
       while count == 0:
         classes = input("Please enter all of the INST-related classes that " +
                   "you have taken, one at a time, in the following format: " +
@@ -327,7 +327,7 @@ class Student:
       """
       """
       flag = True
-      class_options = "^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
+      class_options = r"^(MATH|STAT|PSYC|INST)\s{1}\d{3}"
 
       while flag:
         update = input('Thank you for updating your classes taken! This will '+
