@@ -438,28 +438,6 @@ def main():
     else:
       print('Please enter yes or no')
   
-  option = class_instance.greet()
-    
-  if option == "Benchmark I":
-      print(class_instance.benchmark_I()) 
-  elif option == 'Benchmark II':
-      print(class_instance.benchmark_II())
-  elif option == 'Update Classes Taken':
-    print(class_instance.update_classes())
-  elif option == 'Change Name or Grad Year':
-      print(class_instance.change_name_gradyear())
-  elif option == "Core Courses":
-      print(class_instance.core_courses())
-  elif option == "Major Specializations":
-      print(class_instance.specializations())
-  elif option == "Credit Counter":
-      print('You have completed '+ str(class_instance.credit_counter()) + 
-              ' INST-related credits.')
-  elif option == 'quit':
-    print("Thank you for using this platform! Goodbye!")
-  else:
-      print("I'm sorry, we don't know how to help you with that.")
-      
   while option != 'quit':
     option = class_instance.greet()
     
