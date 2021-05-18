@@ -11,3 +11,9 @@ Running the program from the command line
   * follow the instructions given on the command line when the options are ran
 
 The strings printed onto the console should be interpreted as they are in relation to completing benchmark, specialization, core courses, etc. requirements.
+
+Annoted Bibliography
+“Curriculum &amp; Cognate Areas -&nbsp;Bachelor of Science in Information Science at College Park (InfoSci).” Curriculum &amp; Specializations - Bachelor of 
+ Science Information Science College Park | UMD College of Information Studies, ischool.umd.edu/academics/bachelor-of-science-in-information-science-college-
+ park/curriculum. 
+ * used to find the curriculum information to create the i-School course requirements for the umd_student_platform.py methods
