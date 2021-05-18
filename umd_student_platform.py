@@ -49,8 +49,9 @@ class Student:
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
-                    'Graduation Year\n\n' + 
-                    'Enter quit to exit I-School help.\n \n\n')
+                    'Graduation Year\n' + 
+                    'To choose an option, type the option how it is written ' +
+                    'above. \n\n Enter quit to exit I-School help.\n\n\n')
       return welcome
    
 
