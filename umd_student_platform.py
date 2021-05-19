@@ -49,6 +49,7 @@ class Student:
                     'Benchmark I \nBenchmark II \nCore Courses'+
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
+                    'Graduation Year\nResources\nContact iSchool\n\n' + 
                     'Graduation Year\n\n' + 
                     'To choose an option, type the option how it is written ' +
                     'above. \n\nEnter quit to exit I-School help.\n\n\n')
@@ -332,6 +333,77 @@ class Student:
       else:
         return credits
       
+    def resources(self):
+      """This method prints some of the resources information that's listed under
+      the InfoScience program structure page.
+
+      Side effects:
+        No side effects
+      """
+      
+      return (f"Hi {self.student_name}, the following resources can help you to prepare for the courses" 
+            "you will be taking in the InfoSci program.\n"
+            "\nPython:\n"
+            "\n\t Essential Python Topics:"
+            "\n\t\t -Statements, variables, basic data types & operators"
+            "\n\t\t -Conditional statements"
+            "\n\t\t -Loops"
+            "\n\t\t -Lists, dictionaries, tuples"
+            "\n\t\t -Input and output"
+            "\n\t\t -Reading and writing files"
+            "\n\t\t -Functions, libraries, modules"
+            "\n\t\t -Testing & debugging"
+            "\n\n\t Python Books"
+            "\n\t\t -Python for Everybody - $10 print, free online"
+            "\n\t\t -Python Crash Course - $40 print, $32 ebook"
+            "\n\t\t -CS Principles: Big Ideas in Programming - free, with" 
+            "interactive examples"
+            "\n\n\t Online Python Courses and Tutorials"
+            "\n\t\t -Codecademy Python - free"
+            "\n\t\t -The Python Guru - free"
+            "\n\t\t -DataCamp Python Programming courses - Intro course free; others charged by the month"
+            "\n\t\t -Coursera - These can be audited for free. If you pay, you can get feedback and \"grades\":"
+            "\n\t\t -http://pythontutor.org - free"
+            "\n\t\t -https://stackoverflow.com - free" 
+            "\n\t\t -w3schools.com - free "
+            "\n\t\t -Corry Schafer Youtube Channel - free "
+            "\nR:\n"
+            "\n\t “-Statistics (The Easier Way) with R: an informal text on applied statistics” by N.M. Radziwill ISBN13 - 9780996916059"
+            "\n\t -Datacamp.com"
+            "\n\t -Codecademy.com\n"         
+      )
+    def advising(self):
+      
+      """This method prints some of the information on the iSchool advising page
+
+      Side effects:
+        No side effects
+      """
+      
+      return (f"Hi {self.student_name}, Advising information is printed below \n\nMain Office\n" 
+            "-----------\n"
+            "\nUniversity of Maryland"
+            "\nCollege of Information Studies"
+            "\n4130 Campus Drive"
+            "\nHornbake Library, Ground Floor, Rm. 0220 "
+            "\nCollege Park, MD 20742-4345"
+            "\n(301) 405-2039"
+            "\nHours: Mon-Fri, 9am-4pm"
+            "\n\n\nDean’s Office\n"
+            "-----------\n"
+            "\nUniversity of Maryland"
+            "\nCollege of Information Studies"
+            "\n4161 Fieldhouse Drive"
+            "\nPatuxent Building, Rm. 1117"
+            "\nCollege Park, MD 20742-4911" 
+            "\nHours: Temporarily Closed\n"
+            "\nStudent Services & Program Teams\n"
+            "-----------\n"
+           "\nGeneral Inquiries: infosci@umd.edu"
+           "\nAdvising: Virtual Advising" 
+           "\nProgram Director: Vedat Diker, vdiker@umd.edu"
+           "\nInterim Director for Undergraduate Operations: Ron Padron, rapadron@umd.edu\n"        
+      )
 
     def update_classes(self):
       """ This method updates the list of classes a student has taken.
@@ -498,6 +570,13 @@ def main():
       print(class_instance.core_courses())
   elif option == "Major Specializations":
       print(class_instance.specializations())
+  elif option == "Contact iSchool":
+      class_instance.advising()
+  elif option == "Credit Counter":
+      print('You have completed '+ str(class_instance.credit_counter()) + 
+              ' INST-related credits.')
+  elif option == "Resources":
+      class_instance.resources()
   elif option == "Credit Counter":
       print('You have completed '+ str(class_instance.credit_counter()) + 
               ' INST-related credits.')
@@ -519,6 +598,10 @@ def main():
         print(class_instance.change_name_gradyear())
     elif option == "Core Courses":
         print(class_instance.core_courses())
+    elif option == "Resources":
+        print(class_instance.resources())
+    elif option == "Contact iSchool":
+        print(class_instance.advising())
     elif option == "Major Specializations":
         print(class_instance.specializations())
     elif option == "Credit Counter":
