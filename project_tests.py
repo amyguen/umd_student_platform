@@ -81,5 +81,3 @@ def test_advising():
             "\n\t “-Statistics (The Easier Way) with R: an informal text on applied statistics” by N.M. Radziwill ISBN13 - 9780996916059"
             "\n\t -Datacamp.com"
             "\n\t -Codecademy.com\n")
-    
-test_advising()

@@ -50,6 +50,7 @@ class Student:
                     '\nMajor Specializations \nCredit Counter \n'+
                     'Update Classes Taken \nChange Name or '+
                     'Graduation Year\nResources\nContact iSchool\n\n' + 
+                    'Graduation Year\n\n' + 
                     'To choose an option, type the option how it is written ' +
                     'above. \n\nEnter quit to exit I-School help.\n\n\n')
       return welcome
@@ -576,6 +577,9 @@ def main():
               ' INST-related credits.')
   elif option == "Resources":
       class_instance.resources()
+  elif option == "Credit Counter":
+      print('You have completed '+ str(class_instance.credit_counter()) + 
+              ' INST-related credits.')
   elif option == 'quit':
     print("Thank you for using this platform! Goodbye!")
   else:
